@@ -1,5 +1,4 @@
-import { supabaseServer } from "../../../../lib/supabase-server";
-import { redirect } from "next/navigation";
+import { requireAuth } from "@/lib/auth-server";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,9 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Key } from "lucide-react";
 
 export default async function ApiKeysPage() {
-  const supabase = await supabaseServer();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) redirect("/login");
+  // Server-side authentication check - cannot be bypassed
+  await requireAuth();
 
   // Calculate stats for sidebar
   const totalKits = 0; // We could fetch this if needed
