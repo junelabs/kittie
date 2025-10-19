@@ -13,7 +13,7 @@ export function DashboardAuth() {
 
   useEffect(() => {
     // Check if already authenticated
-    const authStatus = localStorage.getItem('kittie-dashboard-auth');
+    const authStatus = localStorage.getItem('dashboard_authenticated');
     if (authStatus === 'true') {
       setIsAuthenticated(true);
     }
@@ -36,7 +36,9 @@ export function DashboardAuth() {
 
       if (response.ok) {
         setIsAuthenticated(true);
-        localStorage.setItem('kittie-dashboard-auth', 'true');
+        localStorage.setItem('dashboard_authenticated', 'true');
+        // Set httpOnly cookie for middleware
+        document.cookie = 'dashboard_authenticated=true; path=/; max-age=86400; secure; samesite=strict';
       } else {
         setError('Invalid password');
       }
@@ -49,7 +51,9 @@ export function DashboardAuth() {
 
   const handleLogout = () => {
     setIsAuthenticated(false);
-    localStorage.removeItem('kittie-dashboard-auth');
+    localStorage.removeItem('dashboard_authenticated');
+    // Clear the cookie
+    document.cookie = 'dashboard_authenticated=; path=/; max-age=0';
   };
 
   if (isAuthenticated) {

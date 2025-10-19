@@ -17,10 +17,19 @@ export async function POST(request: NextRequest) {
     
     // Check if the provided password matches
     if (password === dashboardPassword) {
-      return NextResponse.json({ success: true });
+      const response = NextResponse.json({ authenticated: true });
+      // Set httpOnly cookie for middleware
+      response.cookies.set('dashboard_authenticated', 'true', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 86400, // 24 hours
+        path: '/'
+      });
+      return response;
     } else {
       return NextResponse.json(
-        { error: 'Invalid password' },
+        { authenticated: false, message: 'Incorrect password.' },
         { status: 401 }
       );
     }
