@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { CheckCircle, Upload, Share2, Download, Users, Shield, Zap, ArrowRight, Star, Check } from "lucide-react"
 import { Navbar } from "../../components/layout/Navbar"
 
+// Landing page component
 export default function LandingPage() {
     return (
     <div className="min-h-screen bg-white">
