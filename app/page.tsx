@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { CheckCircle, Upload, Share2, Download, Users, Shield, Zap, ArrowRight, Star, Check } from "lucide-react"
 import { Navbar } from "../components/layout/Navbar"
 
-// Landing page component - Root page for Kittie
+// Landing page component - Root page for Kittie (Vercel Test)
 export default function LandingPage() {
     return (
     <div className="min-h-screen bg-white">
