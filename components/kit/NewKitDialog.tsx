@@ -8,7 +8,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Plus } from "lucide-react";
 
-export function NewKitDialog() {
+interface NewKitDialogProps {
+  variant?: string;
+}
+
+export function NewKitDialog({ variant }: NewKitDialogProps) {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [brandColor, setBrandColor] = useState("");

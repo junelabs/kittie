@@ -1,9 +1,9 @@
 // app/(app)/dashboard/page.tsx
 import { supabaseServer } from "../../../lib/supabase-server";
 import { redirect } from "next/navigation";
-import { KitList } from "../../../src/components/kit/KitList";
-import { NewKitDialog } from "../../../src/components/kit/NewKitDialog";
-import { DashboardLayout } from "../../../src/components/layout/DashboardLayout";
+import { KitList } from "@/components/kit/KitList";
+import { NewKitDialog } from "@/components/kit/NewKitDialog";
+import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { MediaKit } from "../../../types";
 import { Card, CardContent } from "@/components/ui/card";
 import { FolderPlus } from "lucide-react";

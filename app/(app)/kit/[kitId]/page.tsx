@@ -1,7 +1,7 @@
 import { supabaseServer } from "../../../../lib/supabase-server";
 import { redirect, notFound } from "next/navigation";
-import { KitEditor } from "../../../../src/components/kit/KitEditor";
-import { DashboardLayout } from "../../../../src/components/layout/DashboardLayout";
+import { KitEditor } from "@/components/kit/KitEditor";
+import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { MediaKit, Asset } from "../../../../types";
 
 export default async function KitEditorPage({ params }: { params: { kitId: string } }) {

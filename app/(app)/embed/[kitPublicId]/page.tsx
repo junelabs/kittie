@@ -1,6 +1,6 @@
 import { supabaseServer } from "../../../../lib/supabase-server";
 import { notFound } from "next/navigation";
-import { EditorPreview } from "../../../../src/components/kit/EditorPreview";
+import { EditorPreview } from "@/components/kit/EditorPreview";
 import { MediaKit, Section, Asset, TeamMember } from "../../../../types";
 
 export default async function EmbedPage({ params }: { params: Promise<{ kitPublicId: string }> }) {
