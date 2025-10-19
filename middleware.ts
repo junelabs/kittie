@@ -1,39 +1,24 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+// middleware.ts
+import type { NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
 
-export function middleware(request: NextRequest) {
-  // Get the pathname
-  const pathname = request.nextUrl.pathname;
-  
-  // Check if the request is for a protected dashboard route
-  const isDashboardRoute = pathname.startsWith('/dashboard') || 
-                          pathname.startsWith('/kit') || 
-                          pathname.startsWith('/settings') || 
-                          pathname.startsWith('/billing') ||
-                          pathname.startsWith('/help') ||
-                          pathname.startsWith('/assets');
-  
-  // If it's a dashboard route, check for authorization via cookies
-  if (isDashboardRoute) {
-    // Check for authentication cookie
-    const authCookie = request.cookies.get('dashboard_authenticated');
-    
-    // If no auth cookie, redirect to home page
-    if (!authCookie || authCookie.value !== 'true') {
-      return NextResponse.redirect(new URL('/', request.url));
-    }
-  }
-  
-  return NextResponse.next();
+// Only run on real routes; skip assets, api, and Vercel internals
+export const config = {
+  matcher: ['/((?!_next|api|_vercel|.*\\..*|favicon.ico|robots.txt|sitemap.xml).*)'],
 }
 
-export const config = {
-  matcher: [
-    '/dashboard/:path*',
-    '/kit/:path*',
-    '/settings/:path*',
-    '/billing/:path*',
-    '/help/:path*',
-    '/assets/:path*'
-  ]
-};
+export default function middleware(req: NextRequest) {
+  try {
+    // If you had host redirects, keep them minimal & null-safe, e.g.:
+    // const host = req.headers.get('host') || ''
+    // if (host === 'kittie.so') {
+    //   const url = new URL(req.url)
+    //   url.hostname = 'www.kittie.so'
+    //   return NextResponse.redirect(url)
+    // }
+    return NextResponse.next()
+  } catch {
+    // Never throw from middleware in prod
+    return NextResponse.next()
+  }
+}
