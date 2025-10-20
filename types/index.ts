@@ -1,41 +1,43 @@
-export type AssetKind = "logo" | "image" | "doc";
+// Canonical shared types across the app
+
+// Assets
+export type AssetKind = 'logo' | 'image' | 'doc';
 
 export interface Asset {
   id: string;
   kit_id: string;
-  user_id: string;
+  section_id?: string | null;
+  user_id?: string;
   kind: AssetKind;
-  label: string | null;
+  label?: string | null;
   file_path: string;
+  file_url?: string;
   order_index: number;
+  size_bytes?: number | null;
+  mime?: string | null;
   created_at: string;
 }
 
+// Media kits
 export interface MediaKit {
   id: string;
-  user_id: string;
+  user_id: string;          // canonical owner reference
+  owner_id?: string;        // kept optional for legacy compatibility
   name: string;
   brand_color: string | null;
   is_public: boolean;
   public_id: string;
   created_at: string;
+  updated_at?: string;
+  // Optional marketing fields (used by some UI)
+  description?: string | null;
+  primary_cta_label?: string | null;
+  primary_cta_action?: 'downloadAll' | 'openUrl';
+  primary_cta_url?: string | null;
+  show_powered_by?: boolean;
 }
-export type MediaKit = {
-  id: string;
-  owner_id: string;
-  name: string;
-  description: string | null;
-  brand_color: string | null;
-  public_id: string;
-  is_public: boolean;
-  primary_cta_label: string | null;
-  primary_cta_action: 'downloadAll' | 'openUrl';
-  primary_cta_url: string | null;
-  show_powered_by: boolean;
-  created_at: string;
-  updated_at: string;
-};
 
+// Kit sections
 export type Section = {
   id: string;
   kit_id: string;
@@ -47,23 +49,7 @@ export type Section = {
   created_at: string;
 };
 
-export type AssetKind = 'logo' | 'image' | 'doc' | 'bio';
-
-export type Asset = {
-  id: string;
-  kit_id: string;
-  section_id: string | null;
-  kind: AssetKind;
-  file_path: string;
-  file_url: string;
-  label: string | null;
-  alt_text: string | null;
-  order_index: number;
-  size_bytes: number | null;
-  mime: string | null;
-  created_at: string;
-};
-
+// Team members
 export type TeamMember = {
   id: string;
   section_id: string;

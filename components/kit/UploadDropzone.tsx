@@ -96,7 +96,6 @@ export function UploadDropzone({ kitId, kind, onUploadComplete }: UploadDropzone
       case "logo": return "logos";
       case "image": return "images";
       case "doc": return "documents";
-      case "bio": return "bio files";
       default: return "files";
     }
   };
@@ -106,7 +105,6 @@ export function UploadDropzone({ kitId, kind, onUploadComplete }: UploadDropzone
       case "logo": return "🎨";
       case "image": return "🖼️";
       case "doc": return "📄";
-      case "bio": return "👤";
       default: return "📁";
     }
   };

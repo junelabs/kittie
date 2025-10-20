@@ -215,11 +215,10 @@ export function KitEditor({ kit, assets }: KitEditorProps) {
 
         {/* Tabs */}
         <Tabs defaultValue="logos" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="logos">Logos</TabsTrigger>
             <TabsTrigger value="images">Images</TabsTrigger>
             <TabsTrigger value="docs">Documents</TabsTrigger>
-            <TabsTrigger value="bio">Bio</TabsTrigger>
           </TabsList>
 
           <TabsContent value="logos" className="space-y-6">
@@ -291,28 +290,7 @@ export function KitEditor({ kit, assets }: KitEditorProps) {
             </Card>
           </TabsContent>
 
-          <TabsContent value="bio" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Bio Assets</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <UploadDropzone
-                  kitId={kit.id}
-                  kind="bio"
-                  onUploadComplete={handleUploadComplete}
-                />
-                <div className="mt-6">
-                  <AssetGrid
-                    assets={getAssetsByKind("bio")}
-                    onReorder={handleAssetReorder}
-                    onUpdate={handleAssetUpdate}
-                    onDelete={handleAssetDelete}
-                  />
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
+          {/* Bio tab removed to align with AssetKind ('logo' | 'image' | 'doc') */}
         </Tabs>
       </div>
 

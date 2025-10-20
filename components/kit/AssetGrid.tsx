@@ -98,17 +98,11 @@ function AssetCard({ asset, onUpdate, onDelete }: {
       case "logo": return <Palette className="h-8 w-8 text-blue-500" />;
       case "image": return <Image className="h-8 w-8 text-green-500" />;
       case "doc": return <FileText className="h-8 w-8 text-orange-500" />;
-      case "bio": return <FileText className="h-8 w-8 text-purple-500" />;
       default: return <FileText className="h-8 w-8 text-gray-500" />;
     }
   };
 
-  const formatFileSize = (bytes: number | null) => {
-    if (!bytes) return "";
-    const sizes = ["B", "KB", "MB", "GB"];
-    const i = Math.floor(Math.log(bytes) / Math.log(1024));
-    return `${(bytes / Math.pow(1024, i)).toFixed(1)} ${sizes[i]}`;
-  };
+  // Using minimal fields defined in current Asset type
 
   return (
     <Card
@@ -171,10 +165,7 @@ function AssetCard({ asset, onUpdate, onDelete }: {
               <div className="font-medium text-sm truncate">
                 {asset.label || asset.file_path.split("/").pop() || "Untitled"}
               </div>
-              <div className="text-xs text-gray-500">
-                {formatFileSize(asset.size_bytes)}
-                {asset.mime && ` • ${asset.mime.split("/")[1]?.toUpperCase()}`}
-              </div>
+              <div className="text-xs text-gray-500">&nbsp;</div>
             </div>
           )}
         </div>
@@ -184,7 +175,7 @@ function AssetCard({ asset, onUpdate, onDelete }: {
             variant="outline"
             size="sm"
             className="w-full"
-            onClick={() => window.open(asset.file_url, "_blank")}
+            onClick={() => window.open(asset.file_path, "_blank")}
           >
             <Download className="mr-2 h-3 w-3" />
             Download

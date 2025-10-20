@@ -1,43 +1,13 @@
 "use client";
 
-import { MediaKit } from "../../../types";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Link from "next/link";
-
-export function KitList({ kits }: { kits: MediaKit[] }) {
-  if (!kits?.length) {
-    return null;
-  }
-
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {kits.map((kit) => (
-        <Card key={kit.id} className="border border-amber-200">
-          <CardHeader>
-            <CardTitle className="truncate">{kit.name}</CardTitle>
-          </CardHeader>
-          <CardContent className="flex items-center justify-between">
-            <span className="text-sm text-amber-600">{new Date(kit.created_at).toLocaleDateString()}</span>
-            <Link href={`/kit/${kit.id}`} className="text-orange-700 font-medium hover:underline">Open</Link>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
-  );
-}
-
-export default KitList;
-
-"use client";
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { MoreHorizontal, Edit, Trash2, Share } from "lucide-react";
-import { MediaKit } from "../../../types";
-import { EmbedModal } from "./EmbedModal";
+import { MediaKit } from "@/types";
+import { EmbedModal } from "@/components/kit/EmbedModal";
 
 interface KitListProps {
   kits: MediaKit[];
