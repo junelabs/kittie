@@ -11,18 +11,12 @@ export default async function KitEditorPage({ params }: { params: { kitId: strin
   // TODO: Replace with actual data fetching when needed
   const kit: MediaKit = {
     id: params.kitId,
+    user_id: "placeholder",
     name: "Sample Kit",
-    description: "This is a sample kit",
     brand_color: null,
-    public_id: "sample-kit",
     is_public: false,
-    primary_cta_label: null,
-    primary_cta_action: 'downloadAll',
-    primary_cta_url: null,
-    show_powered_by: true,
-    owner_id: "placeholder",
+    public_id: "sample-kit",
     created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString()
   };
   
   const assets: Asset[] = [];

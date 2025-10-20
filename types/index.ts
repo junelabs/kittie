@@ -1,3 +1,25 @@
+export type AssetKind = "logo" | "image" | "doc";
+
+export interface Asset {
+  id: string;
+  kit_id: string;
+  user_id: string;
+  kind: AssetKind;
+  label: string | null;
+  file_path: string;
+  order_index: number;
+  created_at: string;
+}
+
+export interface MediaKit {
+  id: string;
+  user_id: string;
+  name: string;
+  brand_color: string | null;
+  is_public: boolean;
+  public_id: string;
+  created_at: string;
+}
 export type MediaKit = {
   id: string;
   owner_id: string;
