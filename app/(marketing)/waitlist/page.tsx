@@ -53,8 +53,8 @@ export default function WaitlistPage() {
       {/* Native Form */}
       <section className="px-4 sm:px-6 lg:px-8 pb-20">
         <div className="max-w-2xl mx-auto">
-          <div className="bg-gradient-to-br from-amber-50 to-white border-2 border-orange-200 rounded-lg shadow-xl overflow-hidden">
-            <div className="p-6 bg-gradient-to-r from-amber-50 to-white border-b border-orange-100">
+          <div className="bg-gradient-to-br from-[#fef7ed] to-white border-2 border-orange-200 rounded-lg shadow-xl overflow-hidden">
+            <div className="p-6 bg-gradient-to-r from-[#fef7ed] to-white border-b border-orange-100">
               <h2 className="text-lg font-semibold text-gray-900">Sign up for early access</h2>
               <p className="text-sm text-gray-600 mt-1">No spam, just updates on our launch progress.</p>
             </div>
