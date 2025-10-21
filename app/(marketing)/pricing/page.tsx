@@ -274,7 +274,7 @@ export default function PricingPage() {
                       {plan.special && plan.originalPrice && (
                         <div className="mt-2">
                           <span className="text-sm text-gray-500 line-through">${plan.originalPrice}/year</span>
-                          <span className="text-sm text-green-600 ml-2 font-medium">Save $269</span>
+                          <span className="text-sm text-green-600 ml-2 font-medium">Save $149</span>
                         </div>
                       )}
                     </div>
