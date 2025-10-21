@@ -234,11 +234,6 @@ export default function PricingPage() {
               🎁 Launch Special: Get 1 year for $79 (save $149)
             </span>
           </div>
-          <div className="max-w-3xl mx-auto mt-6 p-4 bg-orange-50 border-2 border-orange-200 rounded-lg">
-            <p className="text-sm text-orange-800">
-              <strong>🎉 Pre-Launch Special:</strong> We&apos;re launching soon! Join our waitlist now to secure early access and exclusive pricing when we go live.
-            </p>
-          </div>
         </div>
       </section>
 
