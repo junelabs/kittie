@@ -61,7 +61,7 @@ export default function PricingPage() {
       name: "Starter Annual",
       price: 79,
       originalPrice: 228,
-      description: "Everything in Starter plan",
+      description: "Pre-Sale: Starter Annual",
       features: [
         "Everything in Starter, plus:",
         "Valid for 12 months",
@@ -72,11 +72,11 @@ export default function PricingPage() {
         "3 team members",
         "All Starter features included"
       ],
-      cta: "Claim limited offer",
+      cta: "Get Early Bird Offer",
       ctaVariant: "special" as const,
       popular: false,
       special: true,
-      badge: "Limited Time",
+      badge: "Early Bird Offer",
       expiresDate: "December 31, 2024"
     },
     // FUTURE TIERS - Uncomment when ready to launch
@@ -298,7 +298,11 @@ export default function PricingPage() {
                       }`}
                       asChild
                     >
-                      <a href="/waitlist">Join waitlist</a>
+                      {plan.ctaVariant === 'special' ? (
+                        <a href="https://buy.stripe.com/6oU9AS0zi7qe0c8gE25AQ05" target="_blank" rel="noopener noreferrer">{plan.cta}</a>
+                      ) : (
+                        <a href="/waitlist">Join waitlist</a>
+                      )}
                     </Button>
                     
                     {plan.special && plan.expiresDate && (

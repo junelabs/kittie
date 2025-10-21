@@ -231,12 +231,12 @@ export default function LandingPage() {
             
             <Card className="p-8 scale-105 shadow-xl border-2 border-orange-500 bg-gradient-to-br from-orange-50 to-white relative">
               <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-red-500 to-orange-500 text-white">
-                Limited Time
+                Early Bird Offer
               </Badge>
               <CardContent className="p-0">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Starter Annual</h3>
                 <div className="text-4xl font-bold text-gray-900 mb-4">$79<span className="text-lg text-gray-600">/year</span></div>
-                <p className="text-gray-600 mb-4">Everything in Starter plan</p>
+                <p className="text-gray-600 mb-4">Pre-Sale: Starter Annual</p>
                 <div className="mb-6">
                   <span className="text-sm text-gray-500 line-through">$228/year</span>
                   <span className="text-sm text-green-600 ml-2 font-medium">Save $149</span>
@@ -256,7 +256,7 @@ export default function LandingPage() {
                   </li>
                 </ul>
                 <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white" asChild>
-                  <a href="/waitlist">Join waitlist</a>
+                  <a href="https://buy.stripe.com/6oU9AS0zi7qe0c8gE25AQ05" target="_blank" rel="noopener noreferrer">Get Early Bird Offer</a>
                 </Button>
               </CardContent>
             </Card>
