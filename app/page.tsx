@@ -170,7 +170,7 @@ export default function LandingPage() {
           {/* Launch Special Callout */}
           <div className="flex justify-center mb-8">
             <span className="inline-block bg-orange-100 text-orange-800 border border-orange-200 px-4 md:px-6 py-2.5 rounded-full text-sm font-semibold shadow-sm">
-              🎁 Launch Special: Get 1 year for $79 (save $269)
+              🎁 Launch Special: Get 1 year for $79 (save $149)
             </span>
           </div>
           
@@ -203,7 +203,7 @@ export default function LandingPage() {
             <Card className="p-8 border border-gray-200 shadow-lg">
               <CardContent className="p-0">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Starter</h3>
-                <div className="text-4xl font-bold text-gray-900 mb-4">$29<span className="text-lg text-gray-600">/mo</span></div>
+                <div className="text-4xl font-bold text-gray-900 mb-4">$19<span className="text-lg text-gray-600">/mo</span></div>
                 <p className="text-gray-600 mb-6">For growing teams</p>
                 <ul className="space-y-3 mb-8 text-left">
                   <li className="flex items-start">
@@ -238,8 +238,8 @@ export default function LandingPage() {
                 <div className="text-4xl font-bold text-gray-900 mb-4">$79<span className="text-lg text-gray-600">/year</span></div>
                 <p className="text-gray-600 mb-4">Everything in Starter plan</p>
                 <div className="mb-6">
-                  <span className="text-sm text-gray-500 line-through">$348/year</span>
-                  <span className="text-sm text-green-600 ml-2 font-medium">Save $269</span>
+                  <span className="text-sm text-gray-500 line-through">$228/year</span>
+                  <span className="text-sm text-green-600 ml-2 font-medium">Save $149</span>
                 </div>
                 <ul className="space-y-3 mb-8 text-left">
                   <li className="flex items-start">

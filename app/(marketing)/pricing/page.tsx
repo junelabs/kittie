@@ -36,7 +36,7 @@ export default function PricingPage() {
     },
     starter: {
       name: "Starter",
-      price: 29,
+      price: 19,
       description: "For growing teams",
       features: [
         "3 active kits",
@@ -60,12 +60,12 @@ export default function PricingPage() {
     limitedOffer: {
       name: "Starter Annual",
       price: 79,
-      originalPrice: 348,
+      originalPrice: 228,
       description: "Everything in Starter plan",
       features: [
         "Everything in Starter, plus:",
         "Valid for 12 months",
-        "Save $269 (normally $348/year)",
+        "Save $149 (normally $228/year)",
         "3 active kits",
         "25 GB storage",
         "100 GB bandwidth/mo",
@@ -231,7 +231,7 @@ export default function PricingPage() {
           </p>
           <div className="flex justify-center mb-4">
             <span className="inline-block bg-orange-100 text-orange-800 border border-orange-200 px-4 md:px-6 py-2.5 rounded-full text-sm font-semibold shadow-sm">
-              🎁 Launch Special: Get 1 year for $79 (save $269)
+              🎁 Launch Special: Get 1 year for $79 (save $149)
             </span>
           </div>
         </div>
