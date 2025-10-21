@@ -41,12 +41,23 @@ export default function WaitlistPage() {
       {/* Hero Section */}
       <section className="py-12 px-4 sm:px-6 lg:px-8 text-center">
         <div className="max-w-2xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Join the Kittie Waitlist
-          </h1>
-          <p className="text-xl text-gray-600 mb-8">
-            Be the first to know when we launch. Get the early offer pricing.
-          </p>
+                  <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    Join the Pre-Launch Waitlist
+                  </h1>
+                  <p className="text-xl text-gray-600 mb-4">
+                    Be the first to know when we launch and lock in exclusive early bird pricing.
+                  </p>
+                  <div className="max-w-xl mx-auto p-4 bg-orange-50 border-2 border-orange-200 rounded-lg mb-6">
+                    <p className="text-sm text-orange-800 text-left">
+                      <strong>What you&apos;ll get:</strong>
+                    </p>
+                    <ul className="text-sm text-orange-800 mt-2 space-y-1 text-left list-disc list-inside">
+                      <li>Early access when we launch</li>
+                      <li>Exclusive launch pricing (Starter Annual for $79, normally $228)</li>
+                      <li>Updates on our progress and new features</li>
+                      <li>No spam, unsubscribe anytime</li>
+                    </ul>
+                  </div>
         </div>
       </section>
 
@@ -55,8 +66,8 @@ export default function WaitlistPage() {
         <div className="max-w-2xl mx-auto">
           <div className="bg-gradient-to-br from-[#fef7ed] to-white border-2 border-orange-200 rounded-lg shadow-xl overflow-hidden">
             <div className="p-6 bg-gradient-to-r from-[#fef7ed] to-white border-b border-orange-100">
-              <h2 className="text-lg font-semibold text-gray-900">Sign up for early access</h2>
-              <p className="text-sm text-gray-600 mt-1">No spam, just updates on our launch progress.</p>
+              <h2 className="text-lg font-semibold text-gray-900">Secure Your Spot</h2>
+              <p className="text-sm text-gray-600 mt-1">Join the waitlist to get early access and exclusive launch pricing. We&apos;ll email you as soon as we&apos;re ready!</p>
             </div>
             <form onSubmit={onSubmit} className="p-6 space-y-4">
               <div>

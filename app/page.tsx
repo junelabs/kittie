@@ -10,6 +10,13 @@ export default function LandingPage() {
     <div className="min-h-screen bg-white">
       <Navbar currentPage="home" />
 
+      {/* Pre-Launch Banner */}
+      <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white py-3 px-4 text-center">
+        <p className="text-sm font-medium">
+          🚀 We&apos;re in pre-launch! Join the waitlist for early access and exclusive pricing
+        </p>
+      </div>
+
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
@@ -263,7 +270,7 @@ export default function LandingPage() {
           </div>
           
           <p className="text-gray-500 mt-8">
-            Join the waitlist — no commitment required
+            <strong>Pre-Launch Waitlist:</strong> We&apos;re launching soon! Join the waitlist to be notified when these plans go live and lock in early bird pricing.
           </p>
         </div>
       </section>

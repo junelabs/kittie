@@ -234,6 +234,11 @@ export default function PricingPage() {
               🎁 Launch Special: Get 1 year for $79 (save $149)
             </span>
           </div>
+          <div className="max-w-3xl mx-auto mt-6 p-4 bg-orange-50 border-2 border-orange-200 rounded-lg">
+            <p className="text-sm text-orange-800">
+              <strong>🎉 Pre-Launch Special:</strong> We&apos;re launching soon! Join our waitlist now to secure early access and exclusive pricing when we go live.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -317,13 +322,9 @@ export default function PricingPage() {
           </div>
           
           {/* Waitlist Note */}
-          <div className="text-center mt-12">
-            <p className="text-gray-600">
-              Need more? We&apos;re launching additional plans soon for growing teams and agencies.{" "}
-              <a href="#" className="text-orange-600 hover:text-orange-700 font-medium">
-                Join our waitlist
-              </a>{" "}
-              to be notified.
+          <div className="mt-12 p-6 bg-gray-50 border border-gray-200 rounded-lg max-w-2xl mx-auto">
+            <p className="text-sm text-gray-600 text-center">
+              <strong>About the Waitlist:</strong> We&apos;re in pre-launch mode. Join the waitlist to be first in line when we open for signups. You&apos;ll receive an email invitation with early access to all features and special launch pricing. No commitment required.
             </p>
           </div>
         </div>

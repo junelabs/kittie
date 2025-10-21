@@ -54,9 +54,9 @@ export function Navbar({ currentPage = 'home' }: NavbarProps) {
             <Button variant="ghost" className="text-gray-600">
               Sign in
             </Button>
-                    <Button className="bg-orange-500 hover:bg-orange-600 text-white" asChild>
-                      <a href="/waitlist">Join the waitlist</a>
-                    </Button>
+        <Button className="bg-orange-500 hover:bg-orange-600 text-white" asChild>
+          <a href="/waitlist">Join Waitlist — Get Early Access</a>
+        </Button>
           </div>
         </div>
       </div>
