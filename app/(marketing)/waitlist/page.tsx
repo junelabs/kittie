@@ -67,7 +67,7 @@ export default function WaitlistPage() {
           <div className="bg-gradient-to-br from-[#fef7ed] to-white border-2 border-orange-200 rounded-lg shadow-xl overflow-hidden">
             <div className="p-6 bg-gradient-to-r from-[#fef7ed] to-white border-b border-orange-100">
               <h2 className="text-lg font-semibold text-gray-900">Secure Your Spot</h2>
-              <p className="text-sm text-gray-600 mt-1">Join the waitlist to get early access and exclusive launch pricing. We&apos;ll email you as soon as we&apos;re ready!</p>
+              <p className="text-sm text-gray-600 mt-1">Get started free to get early access and exclusive launch pricing. We&apos;ll email you as soon as we&apos;re ready!</p>
             </div>
             <form onSubmit={onSubmit} className="p-6 space-y-4">
               <div>
@@ -109,7 +109,7 @@ export default function WaitlistPage() {
                 disabled={submitting}
                 className="w-full py-3 rounded-lg font-medium transition-colors bg-orange-500 hover:bg-orange-600 text-white"
               >
-                {submitting ? 'Joining...' : 'Join waitlist'}
+                {submitting ? 'Joining...' : 'Get started free'}
               </button>
             </form>
           </div>

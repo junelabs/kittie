@@ -17,7 +17,7 @@ export default function WaitlistSuccessPage() {
               </div>
               <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">You&apos;re on the list!</h1>
               <p className="text-lg text-gray-700 mb-8">
-                Thanks for joining the Kittie waitlist. We&apos;ll email you with early access and launch updates.
+                Thanks for signing up for Kittie! You now have access to all features.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link href="/" className="px-5 py-3 rounded-lg bg-orange-500 hover:bg-orange-600 text-white font-medium" aria-label="Back to home">Back to home</Link>

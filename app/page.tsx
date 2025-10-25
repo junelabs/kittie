@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -10,71 +12,154 @@ export default function LandingPage() {
     <div className="min-h-screen bg-white">
       <Navbar currentPage="home" />
 
-      {/* Pre-Launch Banner */}
-      <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white py-3 px-4 text-center">
-        <p className="text-sm font-medium">
-          🚀 We&apos;re in pre-launch! Join the waitlist for early access and exclusive pricing
-        </p>
-      </div>
 
       {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            The easiest way to keep your brand assets in sync
-          </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Manage your logos, photos, and documents from one place.
-            <br />
-            Update them once — and your media kit updates everywhere.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white text-lg px-8 py-4" asChild>
-              <a href="/waitlist">Join the waitlist</a>
-            </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-4 border-amber-300 hover:bg-[#fcfcf0] text-amber-700" asChild>
-              <a href="/how-it-works">→ See how it works</a>
-            </Button>
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background gradient - two layered gradients: white fade mask over horizontal color wash */}
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
+            linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 42%, rgba(255,255,255,0.85) 52%, rgba(255,255,255,0) 62%),
+            linear-gradient(to right, #FFF9E6 0%, #FFE6CC 50%, #F2E6FF 100%)
+          `,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: '100% 100%, 100% 100%',
+          backgroundPosition: 'top left, bottom left'
+        }}></div>
+        
+        {/* White fade overlay at bottom */}
+        <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white to-transparent"></div>
+
+        <div className="relative z-10 max-w-6xl mx-auto px-6 pt-8 pb-20">
+          <div className="text-center">
+            {/* Trust line */}
+            <div className="mb-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
+              <p className="text-sm text-gray-600 font-medium">
+                Trusted by creative teams, agencies, and modern brands.
+              </p>
+            </div>
+
+            {/* Main headline */}
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-gray-900 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
+              Your brand kit,<br />
+              <span className="bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">
+                always up to date.
+              </span>
+            </h1>
+
+            {/* Subheadline */}
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
+              Kittie helps teams organize, share, and embed brand assets beautifully — from logos to press photos — all in one simple, shareable link.
+            </p>
+
+            {/* Email form */}
+            <div className="max-w-md mx-auto mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-400">
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                const formData = new FormData(e.currentTarget);
+                const email = formData.get('email');
+                if (email) {
+                  window.location.href = `/signup?email=${encodeURIComponent(email.toString())}`;
+                }
+              }} className="flex flex-col sm:flex-row gap-3 p-2 bg-white rounded-2xl shadow-[0_4px_16px_rgba(0,0,0,0.06)] border border-gray-100">
+                <input 
+                  name="email"
+                  type="email" 
+                  placeholder="Enter your work email" 
+                  required
+                  className="flex-1 px-4 py-3 text-gray-900 placeholder-gray-500 bg-transparent border-0 focus:outline-none focus:ring-0"
+                />
+                <button type="submit" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md">
+                  Get started free
+                </button>
+              </form>
+            </div>
+
+            {/* Mockup section */}
+            <div className="relative animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
+              {/* Main mockup card */}
+              <div className="relative max-w-4xl mx-auto">
+                <div className="bg-white rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.1)] border border-gray-100 overflow-hidden">
+                  <div className="p-8">
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-10 h-10 bg-gradient-to-br from-orange-400 to-amber-500 rounded-lg flex items-center justify-center">
+                          <span className="text-white font-bold text-lg">K</span>
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900">Acme Corp Brand Kit</h3>
+                          <p className="text-sm text-gray-500">Updated 2 hours ago</p>
+                        </div>
+                      </div>
+                      <div className="flex space-x-2">
+                        <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                        <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                        <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div className="bg-gray-50 rounded-xl p-4 text-center">
+                        <div className="w-12 h-12 bg-gray-200 rounded-lg mx-auto mb-2"></div>
+                        <p className="text-sm text-gray-600">Logo</p>
+                      </div>
+                      <div className="bg-gray-50 rounded-xl p-4 text-center">
+                        <div className="w-12 h-12 bg-gray-200 rounded-lg mx-auto mb-2"></div>
+                        <p className="text-sm text-gray-600">Photos</p>
+                      </div>
+                      <div className="bg-gray-50 rounded-xl p-4 text-center">
+                        <div className="w-12 h-12 bg-gray-200 rounded-lg mx-auto mb-2"></div>
+                        <p className="text-sm text-gray-600">Guidelines</p>
+                      </div>
+                      <div className="bg-gray-50 rounded-xl p-4 text-center">
+                        <div className="w-12 h-12 bg-gray-200 rounded-lg mx-auto mb-2"></div>
+                        <p className="text-sm text-gray-600">Assets</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating use case cards */}
+                <div className="absolute -top-4 -left-4 bg-white rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] border border-gray-100 p-4 animate-float">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                      <span className="text-green-600 text-sm">📤</span>
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">Share press assets</span>
+                  </div>
+                </div>
+
+                <div className="absolute -top-2 -right-4 bg-white rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] border border-gray-100 p-4 animate-float delay-1000">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                      <span className="text-blue-600 text-sm">🔗</span>
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">Send logos to partners</span>
+                  </div>
+                </div>
+
+                <div className="absolute -bottom-4 -left-8 bg-white rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] border border-gray-100 p-4 animate-float delay-2000">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                      <span className="text-purple-600 text-sm">🎨</span>
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">Embed your brand kit</span>
+                  </div>
+                </div>
+
+                <div className="absolute -bottom-2 -right-8 bg-white rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] border border-gray-100 p-4 animate-float delay-3000">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                      <span className="text-orange-600 text-sm">✨</span>
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">Keep everything consistent</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <p className="text-sm text-gray-500">
-            Join our waitlist to be notified when we launch. <a href="/pricing" className="text-orange-600 hover:text-orange-700">See our pricing →</a>
-          </p>
         </div>
       </section>
 
-      {/* Problem → Solution */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Before Kittie</h2>
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
-                  <p className="text-gray-600">Every time your logo changes, every partner, journalist, and landing page is out of date.</p>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
-                  <p className="text-gray-600">You chase Dropbox links, out-of-date PDFs, and random Google Drive folders.</p>
-                </div>
-              </div>
-            </div>
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">With Kittie</h2>
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                  <p className="text-gray-600">Kittie gives you one simple dashboard for your brand assets — and one embed code that&apos;s always current.</p>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                  <p className="text-gray-600">Update a file once. It updates everywhere instantly.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* How it works */}
       <section id="how-it-works" className="py-20">
@@ -104,69 +189,13 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="mt-12">
-            <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white" asChild>
-              <a href="/waitlist">→ Join the waitlist</a>
+            <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md" asChild>
+              <a href="/signup">→ Get started free</a>
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Features */}
-      <section id="features" className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Features</h2>
-            <p className="text-xl text-gray-600">Everything you need to manage your brand assets</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="p-6 hover:shadow-lg transition-shadow">
-              <CardContent className="p-0">
-                <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg flex items-center justify-center mb-4">
-                  <span className="text-2xl">🧱</span>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Embeddable Kits</h3>
-                <p className="text-gray-600">Add your media kit to any site with one line of code.</p>
-              </CardContent>
-            </Card>
-            <Card className="p-6 hover:shadow-lg transition-shadow">
-              <CardContent className="p-0">
-                <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg flex items-center justify-center mb-4">
-                  <Zap className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Instant Updates</h3>
-                <p className="text-gray-600">Edit assets in your dashboard and every embed auto-refreshes.</p>
-              </CardContent>
-            </Card>
-            <Card className="p-6 hover:shadow-lg transition-shadow">
-              <CardContent className="p-0">
-                <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg flex items-center justify-center mb-4">
-                  <Users className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Collaboration Ready</h3>
-                <p className="text-gray-600">Invite teammates to upload and organize assets together.</p>
-              </CardContent>
-            </Card>
-            <Card className="p-6 hover:shadow-lg transition-shadow">
-              <CardContent className="p-0">
-                <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg flex items-center justify-center mb-4">
-                  <Shield className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Secure & Branded</h3>
-                <p className="text-gray-600">Your assets are served from a private CDN with custom branding.</p>
-              </CardContent>
-            </Card>
-            <Card className="p-6 hover:shadow-lg transition-shadow">
-              <CardContent className="p-0">
-                <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg flex items-center justify-center mb-4">
-                  <Download className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Downloads Simplified</h3>
-                <p className="text-gray-600">Auto-generate ZIPs for press or partners — always current.</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
 
       {/* Pricing */}
       <section id="pricing" className="py-20">
@@ -176,7 +205,7 @@ export default function LandingPage() {
           
           {/* Launch Special Callout */}
           <div className="flex justify-center mb-8">
-            <span className="inline-block bg-orange-100 text-orange-800 border border-orange-200 px-4 md:px-6 py-2.5 rounded-full text-sm font-semibold shadow-sm">
+            <span className="inline-block bg-orange-100 text-gray-900 border border-gray-200 px-4 md:px-6 py-2.5 rounded-full text-sm font-semibold shadow-sm">
               🎁 Launch Special: Get 1 year for $79 (save $149)
             </span>
           </div>
@@ -201,8 +230,8 @@ export default function LandingPage() {
                     <span className="text-gray-600 text-sm">Community support</span>
                   </li>
                 </ul>
-                <Button className="w-full bg-white hover:bg-gray-50 text-gray-900 border border-gray-300" asChild>
-                  <a href="/waitlist">Join waitlist</a>
+                <Button className="w-full bg-white hover:bg-green-500 text-gray-900 border border-gray-200" asChild>
+                  <a href="/signup">Get started free</a>
                 </Button>
               </CardContent>
             </Card>
@@ -230,14 +259,17 @@ export default function LandingPage() {
                     <span className="text-gray-600 text-sm">Email support</span>
                   </li>
                 </ul>
-                <Button className="w-full bg-gray-900 hover:bg-gray-800 text-white" asChild>
-                  <a href="/waitlist">Join waitlist</a>
-                </Button>
+                <form action="/api/stripe/checkout" method="POST">
+                  <input type="hidden" name="plan" value="starter" />
+                  <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-white">
+                    Join Starter
+                  </Button>
+                </form>
               </CardContent>
             </Card>
             
-            <Card className="p-8 scale-105 shadow-xl border-2 border-orange-500 bg-gradient-to-br from-orange-50 to-white relative">
-              <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-red-500 to-orange-500 text-white">
+            <Card className="p-8 scale-105 shadow-xl border-2 border-[#8B65B2] bg-white relative">
+              <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-orange-400 to-orange-600 text-white">
                 Early Bird Offer
               </Badge>
               <CardContent className="p-0">
@@ -245,8 +277,8 @@ export default function LandingPage() {
                 <div className="text-4xl font-bold text-gray-900 mb-4">$79<span className="text-lg text-gray-600">/year</span></div>
                 <p className="text-gray-600 mb-4">Pre-Sale: Starter Annual</p>
                 <div className="mb-6">
-                  <span className="text-sm text-gray-500 line-through">$228/year</span>
-                  <span className="text-sm text-green-600 ml-2 font-medium">Save $149</span>
+                  <span className="text-sm text-gray-600 line-through">$228/year</span>
+                  <span className="text-sm text-green-500 ml-2 font-medium">Save $149</span>
                 </div>
                 <ul className="space-y-3 mb-8 text-left">
                   <li className="flex items-start">
@@ -262,16 +294,16 @@ export default function LandingPage() {
                     <span className="text-gray-600 text-sm">Limited time offer</span>
                   </li>
                 </ul>
-                <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white" asChild>
-                  <a href="https://buy.stripe.com/6oU9AS0zi7qe0c8gE25AQ05" target="_blank" rel="noopener noreferrer">Get Early Bird Offer</a>
-                </Button>
+                <form action="/api/stripe/checkout" method="POST">
+                  <input type="hidden" name="plan" value="pro" />
+                  <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-white">
+                    Get Early Bird Offer
+                  </Button>
+                </form>
               </CardContent>
             </Card>
           </div>
           
-          <p className="text-gray-500 mt-8">
-            <strong>Pre-Launch Waitlist:</strong> We&apos;re launching soon! Join the waitlist to be notified when these plans go live and lock in early bird pricing.
-          </p>
         </div>
       </section>
 
@@ -285,8 +317,8 @@ export default function LandingPage() {
           <p className="text-xl text-gray-600 mb-8">
             Stop updating media kits manually — Kittie keeps them current everywhere.
           </p>
-          <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white text-lg px-8 py-4" asChild>
-            <a href="/waitlist">Join the waitlist</a>
+          <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md" asChild>
+            <a href="/signup">Get started free</a>
           </Button>
         </div>
       </section>
@@ -302,33 +334,31 @@ export default function LandingPage() {
                 </div>
                 <span className="text-xl font-semibold">Kittie</span>
               </div>
-              <p className="text-gray-400">The easiest way to keep your brand assets in sync.</p>
+              <p className="text-gray-600">The easiest way to keep your brand assets in sync.</p>
             </div>
             <div>
-              <h3 className="font-semibold mb-4">Product</h3>
-              <ul className="space-y-2 text-gray-400">
+              <h3 className="font-semibold mb-4 text-white">Product</h3>
+              <ul className="space-y-2 text-gray-300">
                 <li><a href="/features" className="hover:text-white transition-colors">Features</a></li>
                 <li><a href="/pricing" className="hover:text-white transition-colors">Pricing</a></li>
                 <li><a href="/how-it-works" className="hover:text-white transition-colors">How it works</a></li>
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold mb-4">Company</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">About</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+              <h3 className="font-semibold mb-4 text-white">Company</h3>
+              <ul className="space-y-2 text-gray-300">
                 <li><a href="#" className="hover:text-white transition-colors">Privacy</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Terms</a></li>
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold mb-4">Social</h3>
+              <h3 className="font-semibold mb-4 text-white">Social</h3>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">X (Twitter)</a>
+                <a href="#" className="text-gray-300 hover:text-white transition-colors">X (Twitter)</a>
               </div>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+          <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-300">
             <p>&copy; 2025 Kittie. All rights reserved.</p>
           </div>
         </div>

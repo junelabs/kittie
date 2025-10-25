@@ -16,15 +16,14 @@ export default function PricingPage() {
     free: {
       name: "Free",
       price: 0,
-      description: "Perfect for getting started",
+      description: "Try Kittie",
+      tagline: "Perfect for: Testing before committing",
+      positioning: undefined,
       features: [
-        "1 active kit",
+        "1 media kit",
         "2 GB storage",
-        "10 GB bandwidth/mo",
-        "1 team member",
         "Hosted on kittie.so",
-        "Basic analytics",
-        "Community support"
+        "Kittie branding"
       ],
       cta: "Start for free",
       ctaVariant: "outline" as const,
@@ -37,19 +36,19 @@ export default function PricingPage() {
     starter: {
       name: "Starter",
       price: 19,
-      description: "For growing teams",
+      description: "For founders & small teams",
+      tagline: "Perfect for: Startups, solo founders, small companies",
+      positioning: "Everything you need for professional brand assets",
       features: [
-        "3 active kits",
+        "3 media kits",
         "25 GB storage",
-        "100 GB bandwidth/mo",
+        "Remove Kittie branding",
         "3 team members",
-        "Custom domain embedding",
-        "Remove branding",
-        "WordPress & Webflow plugins",
-        "Standard analytics",
-        "Email support (48hr)"
+        "Email support (48hr)",
+        "Custom domains (coming soon)",
+        "Collect email submissions (coming soon)"
       ],
-      cta: "Join the waitlist",
+      cta: "Get Started",
       ctaVariant: "default" as const,
       popular: true,
       special: false,
@@ -57,69 +56,41 @@ export default function PricingPage() {
       originalPrice: undefined,
       expiresDate: undefined
     },
-    limitedOffer: {
-      name: "Starter Annual",
-      price: 79,
-      originalPrice: 228,
-      description: "Pre-Sale: Starter Annual",
-      features: [
-        "Everything in Starter, plus:",
-        "Valid for 12 months",
-        "Save $149 (normally $228/year)",
-        "3 active kits",
-        "25 GB storage",
-        "100 GB bandwidth/mo",
-        "3 team members",
-        "All Starter features included"
-      ],
-      cta: "Get Early Bird Offer",
-      ctaVariant: "special" as const,
-      popular: false,
-      special: true,
-      badge: "Early Bird Offer",
-      expiresDate: "December 31, 2024"
-    },
     // FUTURE TIERS - Uncomment when ready to launch
     /*
-    pro: {
-      name: "Pro",
+    team: {
+      name: "Team",
       price: 79,
-      description: "For professional teams",
+      description: "For marketing teams",
+      tagline: "Perfect for: Growing companies (50-200 employees)",
+      positioning: "Built for teams managing multiple products",
       features: [
-        "10 active kits",
+        "10 media kits",
         "100 GB storage",
-        "500 GB bandwidth/mo",
         "Unlimited team members",
-        "Everything in Starter, plus:",
-        "Advanced analytics (geo, referrers, time-based)",
-        "API access (read-only)",
-        "Version history",
-        "Custom CSS",
+        "Advanced analytics",
+        "API access",
         "Priority support (24hr)"
       ],
-      cta: "Join the waitlist",
+      cta: "Get Started",
       ctaVariant: "default" as const,
       popular: false,
       special: false
     },
-    business: {
-      name: "Business",
+    agency: {
+      name: "Agency",
       price: 199,
-      description: "For agencies and enterprises",
+      description: "For agencies & enterprises",
+      tagline: "Perfect for: Agencies, multi-brand enterprises",
+      positioning: "Manage all your clients in one place",
       features: [
-        "Unlimited active kits",
+        "Unlimited media kits",
         "500 GB storage",
-        "2 TB bandwidth/mo",
-        "Unlimited team members",
-        "Everything in Pro, plus:",
+        "Client management features",
         "White-label",
-        "Full API access (read/write)",
-        "Webhooks & Zapier",
-        "SSO/SAML",
         "Role-based permissions",
-        "Client management",
-        "Audit logs",
-        "Dedicated support (4hr)"
+        "SSO/SAML",
+        "Dedicated support"
       ],
       cta: "Contact sales",
       ctaVariant: "outline" as const,
@@ -130,59 +101,44 @@ export default function PricingPage() {
   };
 
   // Active tiers for launch - change this array to show different tiers
-  const activeTiers = ['free', 'starter', 'limitedOffer'];
-  // Change to ['free', 'starter', 'pro', 'business'] when ready to show all
+  const activeTiers = ['free', 'starter'];
+  // Change to ['free', 'starter', 'team', 'agency'] when ready to show all
 
   const comparisonFeatures = [
     {
       category: "Core Limits",
       features: [
-        { name: "Active kits", free: "1", starter: "3", limitedOffer: "3" },
-        { name: "Storage", free: "2 GB", starter: "25 GB", limitedOffer: "25 GB" },
-        { name: "Bandwidth/month", free: "10 GB", starter: "100 GB", limitedOffer: "100 GB" },
-        { name: "Team members", free: "1", starter: "3", limitedOffer: "3" }
+        { name: "Media kits", free: "1", starter: "3" },
+        { name: "Storage", free: "2 GB", starter: "25 GB" },
+        { name: "Team members", free: "1", starter: "3" }
       ]
     },
     {
       category: "Hosting & Branding",
       features: [
-        { name: "Custom domain", free: false, starter: true, limitedOffer: true },
-        { name: "Remove branding", free: false, starter: true, limitedOffer: true }
-      ]
-    },
-    {
-      category: "Assets & Features",
-      features: [
-        { name: "WordPress plugin", free: false, starter: true, limitedOffer: true },
-        { name: "Webflow plugin", free: false, starter: true, limitedOffer: true }
-      ]
-    },
-    {
-      category: "Analytics & Insights",
-      features: [
-        { name: "Basic analytics", free: true, starter: false, limitedOffer: false },
-        { name: "Standard analytics", free: false, starter: true, limitedOffer: true }
+        { name: "Hosted on kittie.so", free: true, starter: true },
+        { name: "Remove Kittie branding", free: false, starter: true }
       ]
     },
     {
       category: "Support",
       features: [
-        { name: "Community support", free: true, starter: false, limitedOffer: false },
-        { name: "Email support (48hr)", free: false, starter: true, limitedOffer: true }
+        { name: "Email support (48hr)", free: false, starter: true }
       ]
     }
-    // FUTURE FEATURES - Uncomment when Pro/Business tiers are active
+    // FUTURE FEATURES - Uncomment when Team/Agency tiers are active
     /*
     {
       category: "Advanced Features",
       features: [
-        { name: "Version history", free: false, starter: false, pro: true, business: true },
-        { name: "Custom CSS", free: false, starter: false, pro: true, business: true },
-        { name: "API access (read-only)", free: false, starter: false, pro: true, business: true },
-        { name: "Full API access", free: false, starter: false, pro: false, business: true },
-        { name: "Webhooks", free: false, starter: false, pro: false, business: true },
-        { name: "White-label", free: false, starter: false, pro: false, business: true },
-        { name: "SSO/SAML", free: false, starter: false, pro: false, business: true }
+        { name: "Advanced analytics", free: false, starter: false, team: true, agency: true },
+        { name: "API access", free: false, starter: false, team: true, agency: true },
+        { name: "Priority support (24hr)", free: false, starter: false, team: true, agency: false },
+        { name: "Client management", free: false, starter: false, team: false, agency: true },
+        { name: "White-label", free: false, starter: false, team: false, agency: true },
+        { name: "Role-based permissions", free: false, starter: false, team: false, agency: true },
+        { name: "SSO/SAML", free: false, starter: false, team: false, agency: true },
+        { name: "Dedicated support", free: false, starter: false, team: false, agency: true }
       ]
     }
     */
@@ -190,24 +146,24 @@ export default function PricingPage() {
 
   const faqs = [
     {
-      question: "What counts as an active media kit?",
-      answer: "An active media kit is a published collection of brand assets with its own embed code. Most companies need 1-3 kits, while agencies managing multiple clients need more."
+      question: "What counts as a media kit?",
+      answer: "A media kit is a published collection of brand assets with its own unique link. Most companies need 1-3 kits, while agencies managing multiple clients need more."
     },
     {
-      question: "What happens after my limited offer year expires?",
-      answer: "After 12 months, you can renew at the standard Starter rate ($29/month) or upgrade to a higher tier when available."
-    },
-    {
-      question: "Can I upgrade from the limited offer?",
-      answer: "Yes! If we launch higher tiers during your offer period, you can upgrade and we&apos;ll prorate your remaining time."
+      question: "Can I upgrade or downgrade my plan?",
+      answer: "Yes! You can upgrade or downgrade your plan at any time. When upgrading, you'll get immediate access to new features. When downgrading, changes take effect at the end of your billing cycle."
     },
     {
       question: "Is there a free trial?",
-      answer: "All paid plans include a 14-day free trial. No credit card required to start."
+      answer: "Yes! All paid plans include a 14-day free trial. No credit card required to start."
     },
     {
       question: "Can I cancel anytime?",
-      answer: "Yes. You can cancel your subscription at any time. For the limited offer, you&apos;ll keep access until the end of your 12-month period."
+      answer: "Yes. You can cancel your subscription at any time. You'll keep access to your plan features until the end of your billing period."
+    },
+    {
+      question: "What payment methods do you accept?",
+      answer: "We accept all major credit cards (Visa, Mastercard, American Express) through our secure payment processor, Stripe."
     }
   ];
 
@@ -229,18 +185,13 @@ export default function PricingPage() {
             Give media, partners, and customers instant access to your logos, brand guidelines, 
             and press materials—always up-to-date, always on-brand.
           </p>
-          <div className="flex justify-center mb-4">
-            <span className="inline-block bg-orange-100 text-orange-800 border border-orange-200 px-4 md:px-6 py-2.5 rounded-full text-sm font-semibold shadow-sm">
-              🎁 Launch Special: Get 1 year for $79 (save $149)
-            </span>
-          </div>
         </div>
       </section>
 
       {/* Pricing Cards */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {activeTiers.map((tierKey) => {
               const plan = pricingTiers[tierKey as keyof typeof pricingTiers];
               return (
@@ -265,21 +216,14 @@ export default function PricingPage() {
                       <p className="text-gray-600 mb-4">{plan.description}</p>
                       <div className="flex items-baseline justify-center">
                         <span className="text-5xl font-bold text-gray-900">${plan.price}</span>
-                        {plan.special ? (
-                          <span className="text-lg text-gray-600 ml-1">/year</span>
-                        ) : (
-                          <span className="text-lg text-gray-600 ml-1">/month</span>
-                        )}
+                        <span className="text-lg text-gray-600 ml-1">/month</span>
                       </div>
-                      {plan.special && plan.originalPrice && (
-                        <div className="mt-2">
-                          <span className="text-sm text-gray-500 line-through">${plan.originalPrice}/year</span>
-                          <span className="text-sm text-green-600 ml-2 font-medium">Save $149</span>
-                        </div>
+                      {plan.positioning && (
+                        <p className="text-sm text-gray-500 mt-2 italic">{plan.positioning}</p>
                       )}
                     </div>
                     
-                    <ul className="space-y-3 mb-8">
+                    <ul className="space-y-3 mb-6">
                       {plan.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="flex items-start">
                           <Check className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
@@ -288,28 +232,20 @@ export default function PricingPage() {
                       ))}
                     </ul>
                     
+                    {plan.tagline && (
+                      <p className="text-xs text-gray-500 mb-6 text-center">{plan.tagline}</p>
+                    )}
+                    
                     <Button 
                       className={`w-full py-3 rounded-lg font-medium transition-colors ${
                         plan.ctaVariant === 'default' 
                           ? 'bg-gray-900 hover:bg-gray-800 text-white' 
-                          : plan.ctaVariant === 'special'
-                          ? 'bg-orange-500 hover:bg-orange-600 text-white'
                           : 'bg-white hover:bg-gray-50 text-gray-900 border border-gray-300'
                       }`}
                       asChild
                     >
-                      {plan.ctaVariant === 'special' ? (
-                        <a href="https://buy.stripe.com/6oU9AS0zi7qe0c8gE25AQ05" target="_blank" rel="noopener noreferrer">{plan.cta}</a>
-                      ) : (
-                        <a href="/waitlist">Join waitlist</a>
-                      )}
+                      <a href={plan.price === 0 ? "/waitlist" : "/waitlist"}>{plan.cta}</a>
                     </Button>
-                    
-                    {plan.special && plan.expiresDate && (
-                      <p className="text-center text-sm text-gray-500 mt-3">
-                        Offer expires {plan.expiresDate}
-                      </p>
-                    )}
                   </CardContent>
                 </Card>
               );
@@ -319,7 +255,7 @@ export default function PricingPage() {
           {/* Waitlist Note */}
           <div className="mt-12 p-6 bg-gray-50 border border-gray-200 rounded-lg max-w-2xl mx-auto">
             <p className="text-sm text-gray-600 text-center">
-              <strong>About the Waitlist:</strong> We&apos;re in pre-launch mode. Join the waitlist to be first in line when we open for signups. You&apos;ll receive an email invitation with early access to all features and special launch pricing. No commitment required.
+              <strong>Join the Waitlist:</strong> We&apos;re currently in beta. Get started free to be first in line when we open for general availability. You&apos;ll receive an email invitation with early access to all features. No commitment required.
             </p>
           </div>
         </div>
@@ -350,14 +286,13 @@ export default function PricingPage() {
                     <th className="text-left p-4 font-semibold text-gray-900 min-w-[200px]">Features</th>
                     <th className="text-center p-4 font-semibold text-gray-900 min-w-[120px]">Free</th>
                     <th className="text-center p-4 font-semibold text-gray-900 min-w-[120px]">Starter</th>
-                    <th className="text-center p-4 font-semibold text-gray-900 min-w-[120px]">Limited Offer</th>
                   </tr>
                 </thead>
                 <tbody>
                   {comparisonFeatures.map((category, categoryIndex) => (
                     <React.Fragment key={categoryIndex}>
                       <tr className="bg-gray-100">
-                        <td colSpan={4} className="p-4 font-semibold text-gray-900">
+                        <td colSpan={3} className="p-4 font-semibold text-gray-900">
                           {category.category}
                         </td>
                       </tr>
@@ -384,17 +319,6 @@ export default function PricingPage() {
                               )
                             ) : (
                               <span className="text-gray-700">{feature.starter}</span>
-                            )}
-                          </td>
-                          <td className="p-4 text-center">
-                            {typeof feature.limitedOffer === 'boolean' ? (
-                              feature.limitedOffer ? (
-                                <Check className="w-5 h-5 text-green-500 mx-auto" />
-                              ) : (
-                                <X className="w-5 h-5 text-gray-400 mx-auto" />
-                              )
-                            ) : (
-                              <span className="text-gray-700">{feature.limitedOffer}</span>
                             )}
                           </td>
                         </tr>
@@ -447,14 +371,14 @@ export default function PricingPage() {
             Ready to get started?
           </h2>
           <p className="text-xl text-gray-600 mb-8">
-            Join thousands of teams already using Kittie to manage their brand assets.
+            Get started free for early access to Kittie.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-gray-900 hover:bg-gray-800 text-white px-8 py-4">
-              Join the waitlist
+            <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md" asChild>
+              <a href="/signup">Get started free</a>
             </Button>
-            <Button size="lg" variant="outline" className="px-8 py-4 text-gray-900 border-gray-300 hover:bg-gray-50">
-              Contact sales
+            <Button size="lg" variant="outline" className="px-8 py-4 text-gray-900 border-gray-300 hover:bg-gray-50" asChild>
+              <a href="/help">Get help</a>
             </Button>
           </div>
         </div>

@@ -1,37 +1,12 @@
-import { requireAuth } from "@/lib/auth-server";
-import { KitEditor } from "@/components/kit/KitEditor";
-import { DashboardLayout } from "@/components/layout/DashboardLayout";
-import { MediaKit, Asset } from "../../../../types";
+type Props = { params: Promise<{ kitId: string }> };
 
-export default async function KitEditorPage({ params }: { params: { kitId: string } }) {
-  // Server-side authentication check - cannot be bypassed
-  await requireAuth();
-
-  // For now, using placeholder data since we're focusing on auth
-  // TODO: Replace with actual data fetching when needed
-  const kit: MediaKit = {
-    id: params.kitId,
-    user_id: "placeholder",
-    name: "Sample Kit",
-    brand_color: null,
-    is_public: false,
-    public_id: "sample-kit",
-    created_at: new Date().toISOString(),
-  };
+export default async function KitDetailPage({ params }: Props) {
+  const { kitId } = await params;
   
-  const assets: Asset[] = [];
-  const totalKits = 1;
-  const publicKits = 0;
-
   return (
-    <DashboardLayout totalKits={totalKits} publicKits={publicKits}>
-      <div className="h-full bg-white">
-        <KitEditor 
-          kit={kit as MediaKit} 
-          assets={assets as Asset[] || []} 
-        />
-      </div>
-    </DashboardLayout>
+    <div className="mx-auto max-w-3xl p-6">
+      <h1 className="text-2xl font-semibold mb-2">Kit: {kitId}</h1>
+      <p className="text-sm text-muted-foreground">Detail page coming soon. This will show your media kit editor.</p>
+    </div>
   );
 }
-  

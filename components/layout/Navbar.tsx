@@ -7,7 +7,7 @@ interface NavbarProps {
 
 export function Navbar({ currentPage = 'home' }: NavbarProps) {
   return (
-    <header className="border-b border-gray-100">
+    <header>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-2">
@@ -19,7 +19,7 @@ export function Navbar({ currentPage = 'home' }: NavbarProps) {
                     </Link>
           </div>
                   <nav className="hidden md:flex space-x-8">
-                    <a 
+                    <Link 
                       href="/features" 
                       className={`transition-colors ${
                         currentPage === 'features' 
@@ -28,8 +28,8 @@ export function Navbar({ currentPage = 'home' }: NavbarProps) {
                       }`}
                     >
                       Features
-                    </a>
-                    <a 
+                    </Link>
+                    <Link 
                       href="/pricing" 
                       className={`transition-colors ${
                         currentPage === 'pricing' 
@@ -38,8 +38,8 @@ export function Navbar({ currentPage = 'home' }: NavbarProps) {
                       }`}
                     >
                       Pricing
-                    </a>
-                    <a 
+                    </Link>
+                    <Link 
                       href="/how-it-works" 
                       className={`transition-colors ${
                         currentPage === 'how-it-works' 
@@ -48,15 +48,15 @@ export function Navbar({ currentPage = 'home' }: NavbarProps) {
                       }`}
                     >
                       How it works
-                    </a>
+                    </Link>
                   </nav>
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" className="text-gray-600">
-              Sign in
+            <Button variant="ghost" className="text-gray-600 border-0" asChild>
+              <Link href="/login">Login</Link>
             </Button>
-        <Button className="bg-orange-500 hover:bg-orange-600 text-white" asChild>
-          <a href="/waitlist">Join Waitlist — Get Early Access</a>
-        </Button>
+            <Button className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md" asChild>
+              <Link href="/signup">Get started free</Link>
+            </Button>
           </div>
         </div>
       </div>

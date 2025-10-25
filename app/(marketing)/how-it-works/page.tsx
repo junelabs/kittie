@@ -415,8 +415,8 @@ export default function HowItWorksPage() {
             Join thousands of teams who trust Kittie to keep their brand assets organized and accessible.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white text-lg px-8 py-4" asChild>
-              <a href="/waitlist">Join the waitlist</a>
+            <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md" asChild>
+              <a href="/signup">Get started free</a>
             </Button>
             <Button variant="outline" size="lg" className="text-lg px-8 py-4 border-amber-300 hover:bg-[#fcfcf0] text-amber-700">
               View pricing

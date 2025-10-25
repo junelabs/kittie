@@ -20,11 +20,11 @@ export default function FeaturesPage() {
             up-to-date, and accessible to everyone who needs them.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white text-lg px-8 py-4" asChild>
-              <a href="/waitlist">Join the waitlist</a>
+            <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md" asChild>
+              <a href="/signup">Get started free</a>
             </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-4 border-amber-300 hover:bg-[#fcfcf0] text-amber-700">
-              See pricing
+            <Button variant="outline" size="lg" className="text-lg px-8 py-4 border-gray-200 hover:bg-gray-100 text-gray-900" asChild>
+              <a href="/pricing">See pricing</a>
             </Button>
           </div>
         </div>
@@ -293,15 +293,15 @@ export default function FeaturesPage() {
               <div className="space-y-4">
                 <div className="flex items-center">
                   <Smartphone className="w-6 h-6 text-orange-500 mr-3" />
-                  <span className="text-gray-700">Mobile optimized</span>
+                  <span className="text-gray-600">Mobile optimized</span>
                 </div>
                 <div className="flex items-center">
                   <Monitor className="w-6 h-6 text-orange-500 mr-3" />
-                  <span className="text-gray-700">Desktop ready</span>
+                  <span className="text-gray-600">Desktop ready</span>
                 </div>
                 <div className="flex items-center">
                   <ZapIcon className="w-6 h-6 text-orange-500 mr-3" />
-                  <span className="text-gray-700">Fast loading</span>
+                  <span className="text-gray-600">Fast loading</span>
                 </div>
               </div>
             </div>
@@ -314,7 +314,7 @@ export default function FeaturesPage() {
                     <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                     <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                   </div>
-                  <div className="text-sm text-gray-500">kittie.so/your-brand</div>
+                  <div className="text-sm text-gray-600">kittie.so/your-brand</div>
                 </div>
                 <div className="space-y-4">
                   <div className="h-4 bg-gray-200 rounded"></div>
@@ -341,10 +341,10 @@ export default function FeaturesPage() {
             Join thousands of teams who trust Kittie to keep their brand assets organized and accessible.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white text-lg px-8 py-4" asChild>
-              <a href="/waitlist">Join the waitlist</a>
+            <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md" asChild>
+              <a href="/signup">Get started free</a>
             </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-4 border-amber-300 hover:bg-[#fcfcf0] text-amber-700">
+            <Button variant="outline" size="lg" className="text-lg px-8 py-4 border-gray-200 hover:bg-gray-100 text-gray-900">
               View pricing
             </Button>
           </div>
@@ -362,13 +362,13 @@ export default function FeaturesPage() {
                 </div>
                 <span className="text-xl font-semibold">Kittie</span>
               </div>
-              <p className="text-gray-400">
+              <p className="text-gray-600">
                 The easiest way to keep your brand assets in sync.
               </p>
             </div>
             <div>
               <h3 className="font-semibold mb-4">Product</h3>
-              <ul className="space-y-2 text-gray-400">
+              <ul className="space-y-2 text-gray-600">
                 <li><a href="/features" className="hover:text-white transition-colors">Features</a></li>
                 <li><a href="/pricing" className="hover:text-white transition-colors">Pricing</a></li>
                 <li><a href="/how-it-works" className="hover:text-white transition-colors">How it works</a></li>
@@ -376,7 +376,7 @@ export default function FeaturesPage() {
             </div>
             <div>
               <h3 className="font-semibold mb-4">Company</h3>
-              <ul className="space-y-2 text-gray-400">
+              <ul className="space-y-2 text-gray-600">
                 <li><a href="#" className="hover:text-white transition-colors">About</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
@@ -384,14 +384,14 @@ export default function FeaturesPage() {
             </div>
             <div>
               <h3 className="font-semibold mb-4">Support</h3>
-              <ul className="space-y-2 text-gray-400">
+              <ul className="space-y-2 text-gray-600">
                 <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Documentation</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Status</a></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+          <div className="border-t border-gray-200 mt-12 pt-8 text-center text-gray-600">
             <p>&copy; 2024 Kittie. All rights reserved.</p>
           </div>
         </div>

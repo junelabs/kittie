@@ -4,6 +4,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --font-family-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
 :root {
   color-scheme: light dark;
   --radius: 0.625rem;
@@ -265,4 +269,125 @@ html, body, #__next {
   .shadow-floating {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
+
+  /* Universal pointer cursor for interactive elements */
+  button,
+  a,
+  [role="button"],
+  [role="link"],
+  [type="button"],
+  [type="submit"],
+  [type="reset"],
+  select,
+  label[for],
+  summary,
+  .cursor-pointer,
+  [data-cursor="pointer"] {
+    cursor: pointer !important;
+  }
+
+  /* Specific selectors for common interactive elements */
+  a:hover,
+  button:hover,
+  [role="button"]:hover,
+  [role="link"]:hover,
+  .cursor-pointer:hover {
+    cursor: pointer !important;
+  }
+
+  /* Disabled states should not have pointer */
+  button:disabled,
+  [disabled] {
+    cursor: not-allowed !important;
+  }
+
+  /* Text inputs should have text cursor */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="number"],
+  textarea {
+    cursor: text !important;
+  }
+}
+
+/* Kittie Design Tokens */
+:root{
+  --kittie-bg:        255 255 255;   /* white */
+  --kittie-ink:       23 22 20;      /* near-black */
+  --kittie-accent:    255 111 97;    /* warm coral/orange */
+  --kittie-muted:     244 242 240;   /* warm gray (cards) */
+  --kittie-stroke:    230 227 223;   /* dividers */
+  --brand:            #FF7A3D;       /* matte orange brand color */
+}
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-synthesis-weight: none;
+}
+
+body{ 
+  background: rgb(var(--kittie-bg)); 
+  color: rgb(var(--kittie-ink)); 
+}
+
+/* Hide scrollbars while maintaining scroll functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Force cursor pointer on all interactive elements */
+* {
+  cursor: inherit;
+}
+
+a, button, [role="button"], [role="link"], [type="button"], [type="submit"], [type="reset"], select, label[for], summary {
+  cursor: pointer !important;
+}
+
+a:hover, button:hover, [role="button"]:hover, [role="link"]:hover {
+  cursor: pointer !important;
+}
+
+button:disabled, [disabled] {
+  cursor: not-allowed !important;
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="search"], input[type="tel"], input[type="url"], input[type="number"], textarea {
+  cursor: text !important;
+}
+
+/* Custom animations for hero section */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float.delay-1000 {
+  animation-delay: 1s;
+}
+
+.animate-float.delay-2000 {
+  animation-delay: 2s;
+}
+
+.animate-float.delay-3000 {
+  animation-delay: 3s;
 }
