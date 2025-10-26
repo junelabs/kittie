@@ -133,7 +133,7 @@ export default function SaveConfirmModal({
               className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors"
             >
               Open in new tab <ExternalLink className="h-3 w-3" />
-            </Link>
+            </a>
           </div>
 
           {/* Embed Code Section */}
