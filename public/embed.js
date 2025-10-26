@@ -2,7 +2,7 @@
   'use strict';
 
   // Configuration
-  const KITTIE_ORIGIN = 'https://kittie.so';
+  const KITTIE_ORIGIN = window.location.origin; // Use current origin for local development
   const EMBED_VERSION = '1.0.0';
 
   // Global KittieEmbed object
