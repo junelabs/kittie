@@ -96,12 +96,26 @@ export default function TestEmbedPage() {
 
   const debugClientSide = async () => {
     try {
+      // First, let's test if we can access the dashboard
+      console.log('Testing dashboard access...');
+      try {
+        const dashboardResponse = await fetch('/dashboard');
+        console.log('Dashboard response status:', dashboardResponse.status);
+      } catch (error) {
+        console.log('Dashboard access error:', error);
+      }
+
       // Use client-side Supabase to check authentication and data
       const { sbBrowser } = await import('@/lib/supabase/browser');
       const supabase = sbBrowser();
       
+      // Check session first
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+      console.log('Session debug:', { session, sessionError });
+      
       // Check auth
       const { data: { user }, error: authError } = await supabase.auth.getUser();
+      console.log('User debug:', { user, authError });
       
       // Check kits table
       const { data: kits, error: kitsError } = await supabase
@@ -120,7 +134,13 @@ export default function TestEmbedPage() {
       setDebugInfo({
         auth: {
           user: user ? { id: user.id, email: user.email } : null,
-          error: authError?.message
+          error: authError?.message,
+          session: session ? { 
+            access_token: session.access_token ? 'present' : 'missing',
+            refresh_token: session.refresh_token ? 'present' : 'missing',
+            expires_at: session.expires_at
+          } : null,
+          sessionError: sessionError?.message
         },
         kits: {
           data: kits,
