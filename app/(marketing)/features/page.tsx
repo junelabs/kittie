@@ -23,7 +23,7 @@ export default function FeaturesPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md" asChild>
-              <Link href="/signup">Get started free</Link>
+              <Link href="/waitlist">Get started free</Link>
             </Button>
             <Button variant="outline" size="lg" className="text-lg px-8 py-4 border-gray-200 hover:bg-gray-100 text-gray-900" asChild>
               <Link href="/pricing">See pricing</Link>
@@ -344,7 +344,7 @@ export default function FeaturesPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md" asChild>
-              <Link href="/signup">Get started free</Link>
+              <Link href="/waitlist">Get started free</Link>
             </Button>
             <Button variant="outline" size="lg" className="text-lg px-8 py-4 border-gray-200 hover:bg-gray-100 text-gray-900">
               View pricing

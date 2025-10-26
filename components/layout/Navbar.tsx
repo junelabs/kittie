@@ -52,10 +52,10 @@ export function Navbar({ currentPage = 'home' }: NavbarProps) {
                   </nav>
           <div className="flex items-center space-x-4">
             <Button variant="ghost" className="text-gray-600 border-0" asChild>
-              <Link href="/login">Login</Link>
+              <Link href="/waitlist">Join Waitlist</Link>
             </Button>
             <Button className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md" asChild>
-              <Link href="/signup">Get started free</Link>
+              <Link href="/waitlist">Join Waitlist</Link>
             </Button>
           </div>
         </div>

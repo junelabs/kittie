@@ -141,10 +141,10 @@ export default function LoginPage() {
           <p className="text-sm text-gray-600">
             Don&apos;t have an account?{' '}
             <Link 
-              href="/signup" 
+              href="/waitlist" 
               className="font-medium text-gray-900 hover:text-black transition-colors duration-200"
             >
-              Create one
+              Join Waitlist
             </Link>
           </p>
         </div>

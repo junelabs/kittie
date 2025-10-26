@@ -78,10 +78,10 @@ export default function SignupClient() {
           <p className="mt-2 text-center text-sm text-gray-600">
             Or{' '}
             <Link
-              href="/login"
+              href="/waitlist"
               className="font-semibold text-orange-600 hover:text-orange-500"
             >
-              sign in to your existing account
+              Join Waitlist
             </Link>
           </p>
         </div>

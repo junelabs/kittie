@@ -60,7 +60,7 @@ export default function LandingPage() {
                 const formData = new FormData(e.currentTarget);
                 const email = formData.get('email');
                 if (email) {
-                  window.location.href = `/signup?email=${encodeURIComponent(email.toString())}`;
+                  window.location.href = `/waitlist?email=${encodeURIComponent(email.toString())}`;
                 }
               }} className="flex flex-col sm:flex-row gap-3 p-2 bg-white rounded-2xl shadow-[0_4px_16px_rgba(0,0,0,0.06)] border border-gray-100">
                 <input 
@@ -192,7 +192,7 @@ export default function LandingPage() {
           </div>
           <div className="mt-12">
             <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md" asChild>
-              <Link href="/signup">→ Get started free</Link>
+              <Link href="/waitlist">→ Get started free</Link>
             </Button>
           </div>
         </div>
@@ -233,7 +233,7 @@ export default function LandingPage() {
                   </li>
                 </ul>
                 <Button className="w-full bg-white hover:bg-green-500 text-gray-900 border border-gray-200" asChild>
-                  <Link href="/signup">Get started free</Link>
+                  <Link href="/waitlist">Get started free</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -261,12 +261,9 @@ export default function LandingPage() {
                     <span className="text-gray-600 text-sm">Email support</span>
                   </li>
                 </ul>
-                <form action="/api/stripe/checkout" method="POST">
-                  <input type="hidden" name="plan" value="starter" />
-                  <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-white">
-                    Join Starter
-                  </Button>
-                </form>
+                <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white" asChild>
+                  <Link href="/waitlist">Join Waitlist</Link>
+                </Button>
               </CardContent>
             </Card>
             
@@ -296,12 +293,9 @@ export default function LandingPage() {
                     <span className="text-gray-600 text-sm">Limited time offer</span>
                   </li>
                 </ul>
-                <form action="/api/stripe/checkout" method="POST">
-                  <input type="hidden" name="plan" value="pro" />
-                  <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-white">
-                    Get Early Bird Offer
-                  </Button>
-                </form>
+                <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white" asChild>
+                  <Link href="/waitlist">Join Waitlist</Link>
+                </Button>
               </CardContent>
             </Card>
           </div>
@@ -320,7 +314,7 @@ export default function LandingPage() {
             Stop updating media kits manually — Kittie keeps them current everywhere.
           </p>
           <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md" asChild>
-            <Link href="/signup">Get started free</Link>
+            <Link href="/waitlist">Get started free</Link>
           </Button>
         </div>
       </section>

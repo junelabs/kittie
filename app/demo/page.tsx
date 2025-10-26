@@ -26,7 +26,7 @@ export default function DemoPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md" asChild>
-              <Link href="/signup">Get Started Free</Link>
+              <Link href="/waitlist">Join Waitlist</Link>
             </Button>
             <Button size="lg" variant="outline" className="px-8 py-4 text-gray-900 border-gray-300 hover:bg-gray-50" asChild>
               <Link href="/pricing">View Pricing</Link>
@@ -146,7 +146,7 @@ export default function DemoPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md" asChild>
-              <Link href="/signup">Get Started Free</Link>
+              <Link href="/waitlist">Join Waitlist</Link>
             </Button>
             <Button size="lg" variant="outline" className="px-8 py-4 text-gray-900 border-gray-300 hover:bg-gray-50" asChild>
               <Link href="/features">Learn More</Link>
