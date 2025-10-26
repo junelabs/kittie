@@ -40,7 +40,7 @@ interface DashboardWithBrandsProps {
   planTier: string;
   maxKits: number;
   currentKitCount: number;
-  brands: any[];
+  brands: Array<{ id: string; name: string; slug: string; logo_url?: string }>;
 }
 
 export default function DashboardWithBrands({

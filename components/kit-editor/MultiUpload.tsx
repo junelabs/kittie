@@ -38,6 +38,11 @@ export default function MultiUpload({
       
       // Security validation
       const fileCategory = getFileCategory(file.type);
+      if (fileCategory === 'unknown') {
+        console.error(`Unsupported file type for ${file.name}:`, file.type);
+        setStatus(`Error: Unsupported file type: ${file.type}`);
+        continue;
+      }
       const validation = validateFileUpload(file, fileCategory);
       
       if (!validation.isValid) {
@@ -79,9 +84,10 @@ export default function MultiUpload({
         setStatus("Saved");
         setTimeout(() => setStatus(""), 1200);
         onDone?.();
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error('[MultiUpload] Error:', err);
-        setStatus(`Error: ${err.message}`);
+        const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+        setStatus(`Error: ${errorMessage}`);
       }
     });
   }

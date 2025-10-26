@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe';
 import { createClient } from '@/lib/supabase/server';
 import { withRateLimit } from '@/lib/rate-limit';
@@ -13,7 +13,7 @@ const rateLimitedHandler = withRateLimit({
   message: 'Webhook rate limit exceeded'
 });
 
-export const POST = rateLimitedHandler(async function webhookHandler(req: NextRequest) {
+export const POST = rateLimitedHandler(async function webhookHandler(req: Request) {
   try {
     const body = await req.text();
     const signature = req.headers.get('stripe-signature')!;

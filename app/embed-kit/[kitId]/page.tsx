@@ -75,7 +75,7 @@ async function getKitById(kitId: string): Promise<KitData | null> {
 
   // Get assets for each section
   const sectionsWithAssets = await Promise.all(
-    sections.map(async (section: any) => {
+    sections.map(async (section: { id: string; type: "hero" | "logos" | "gallery" | "team"; title: string; description: string; order: number }) => {
       const { data: assets } = await supabase
         .from('kit_assets')
         .select(`

@@ -16,8 +16,9 @@ export default function ImportAssetsStep({ onComplete }: { onComplete: () => voi
         await markOnboarded();
         onComplete();
         // console.log('onboarding_completed');
-      } catch (e: any) {
-        setErr(e?.message ?? 'Failed to complete onboarding');
+      } catch (e: unknown) {
+        const errorMessage = e instanceof Error ? e.message : 'Failed to complete onboarding';
+        setErr(errorMessage);
       }
     });
   }

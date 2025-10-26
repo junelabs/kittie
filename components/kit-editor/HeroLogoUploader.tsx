@@ -51,9 +51,10 @@ export default function HeroLogoUploader({ kitId, initialUrl, onLogoUpdate }: Pr
         if (onLogoUpdate) {
           onLogoUpdate(publicUrl);
         }
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error('[HeroLogo] Error:', err);
-        setProgress(`Error: ${err.message}`);
+        const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+        setProgress(`Error: ${errorMessage}`);
       }
     });
   }

@@ -78,8 +78,9 @@ export default function BrandModal({ open, onOpenChange, onSuccess, brand }: Bra
         setSelectedColor('#000000');
         setLogoFile(null);
         setLogoPreview(null);
-      } catch (err: any) {
-        setError(err.message || 'Failed to save brand');
+      } catch (err: unknown) {
+        const errorMessage = err instanceof Error ? err.message : 'Failed to save brand';
+        setError(errorMessage);
       }
     });
   };

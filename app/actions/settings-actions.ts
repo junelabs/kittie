@@ -22,7 +22,7 @@ export async function updateSettings(formData: FormData) {
     }
 
     // Parse form data
-    const updates: any = {};
+    const updates: Record<string, unknown> = {};
     
     if (formData.has('theme')) {
       updates.theme = formData.get('theme') as string;

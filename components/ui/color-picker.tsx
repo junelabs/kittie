@@ -25,7 +25,7 @@ export default function ColorPicker({
 }: Props) {
   const [open, setOpen] = React.useState(false);
   const [localColor, setLocalColor] = React.useState(() => normalizeHex(value || '#FF6B6B'));
-  const debounceTimerRef = React.useRef<NodeJS.Timeout>();
+  const debounceTimerRef = React.useRef<NodeJS.Timeout | null>(null);
 
   // Sync local color when external value changes
   React.useEffect(() => {

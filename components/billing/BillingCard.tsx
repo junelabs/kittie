@@ -300,7 +300,7 @@ export default function BillingCard({ planTier, hasStripeCustomer }: BillingCard
       <div className="rounded-2xl border bg-white p-6">
         <h2 className="text-lg font-medium mb-2">Need Help?</h2>
         <p className="text-sm text-muted-foreground mb-4">
-          If you have questions about billing or need assistance, we're here to help.
+          If you have questions about billing or need assistance, we&apos;re here to help.
         </p>
         <Button variant="outline" asChild>
           <a href="mailto:support@kittie.app">

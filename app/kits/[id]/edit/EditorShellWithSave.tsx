@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useTransition, useEffect } from 'react';
+import { useState, useTransition, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import SaveConfirmModal from './SaveConfirmModal';
@@ -17,12 +17,12 @@ export default function EditorShellWithSave({ kitData, userPlan }: Props) {
   const [open, setOpen] = useState(false);
   const [pending, start] = useTransition();
 
-  const handleSave = () => {
+  const handleSave = useCallback(() => {
     start(async () => {
       await saveKit(kitData.kit.id);
       setOpen(true);
     });
-  };
+  }, [start, kitData.kit.id]);
 
   // Handle Cmd+S / Ctrl+S
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function EditorShellWithSave({ kitData, userPlan }: Props) {
 
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [kitData.kit.id]);
+  }, [kitData.kit.id, handleSave]);
 
   return (
     <div className="flex h-screen flex-col bg-gray-50">

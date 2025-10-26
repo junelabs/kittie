@@ -105,11 +105,13 @@ function AssetCard({ asset, onUpdate, onDelete }: {
   // Using minimal fields defined in current Asset type
 
   return (
-    <Card
+    <div
       ref={setNodeRef}
       style={style}
-      className={`cursor-pointer hover:shadow-md transition-shadow ${isDeleting ? "opacity-50" : ""}`}
     >
+      <Card
+        className={`cursor-pointer hover:shadow-md transition-shadow ${isDeleting ? "opacity-50" : ""}`}
+      >
       <CardContent className="p-4">
         <div className="flex items-start justify-between mb-3">
           <div className="flex items-center space-x-2">
@@ -183,6 +185,7 @@ function AssetCard({ asset, onUpdate, onDelete }: {
         </div>
       </CardContent>
     </Card>
+    </div>
   );
 }
 

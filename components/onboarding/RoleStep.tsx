@@ -18,8 +18,9 @@ export default function RoleStep({ onSelectRole }: { onSelectRole: (r: 'brand' |
         await upsertRole(fd);
         onSelectRole(r);
         // optional telemetry: console.log('role_selected', r);
-      } catch (e: any) {
-        setErr(e?.message ?? 'Failed to save role');
+      } catch (e: unknown) {
+        const errorMessage = e instanceof Error ? e.message : 'Failed to save role';
+        setErr(errorMessage);
       }
     });
   }
@@ -45,7 +46,7 @@ export default function RoleStep({ onSelectRole }: { onSelectRole: (r: 'brand' |
             </div>
             <div className="text-left">
               <div className="font-semibold text-gray-900">Brand</div>
-              <div className="text-sm text-gray-600">I'm organizing assets for my brand</div>
+              <div className="text-sm text-gray-600">I&apos;m organizing assets for my brand</div>
             </div>
           </div>
         </Button>

@@ -59,8 +59,9 @@ export default function BrandSettings() {
     try {
       await deleteBrand(brandId);
       await loadBrands();
-    } catch (error: any) {
-      alert(error.message || 'Failed to delete brand');
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Failed to delete brand';
+      alert(errorMessage);
     } finally {
       setDeletingId(null);
     }

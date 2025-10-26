@@ -40,8 +40,9 @@ export default function BrandNameStep({ onNext, onCompanySaved }: { onNext: () =
         onCompanySaved();
         onNext();
         // optional telemetry: console.log('brand_named');
-      } catch (e: any) {
-        setErr(e?.message ?? 'Failed to save name');
+      } catch (e: unknown) {
+        const errorMessage = e instanceof Error ? e.message : 'Failed to save name';
+        setErr(errorMessage);
       }
     });
   };

@@ -33,11 +33,12 @@ export default function NewKitPage() {
         fd.set('name', values.name);
         await createKit(fd);
         router.replace('/dashboard');
-      } catch (e: any) {
-        if (String(e?.message).includes('KIT_LIMIT_REACHED')) {
+      } catch (e: unknown) {
+        if (e instanceof Error && e.message.includes('KIT_LIMIT_REACHED')) {
           setErr("You've reached the 3-kit limit. Delete a kit to create a new one.");
         } else {
-          setErr(e?.message ?? 'Failed to create kit');
+          const errorMessage = e instanceof Error ? e.message : 'Failed to create kit';
+          setErr(errorMessage);
         }
       }
     });

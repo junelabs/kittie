@@ -37,8 +37,9 @@ export default function NewKitButton() {
         setOpen(false);
         setName('');
         router.push(`/kits/${result.kitId}/edit`);
-      } catch (err: any) {
-        setError(err.message || 'Failed to create kit');
+      } catch (err: unknown) {
+        const errorMessage = err instanceof Error ? err.message : 'Failed to create kit';
+        setError(errorMessage);
       }
     });
   };

@@ -166,7 +166,7 @@ export default function TeamEditor({
               variant="ghost"
               onClick={() => {
                 setIsAdding(false);
-                setNewMember({ name: '', title: '' });
+                setNewMember({ name: '', title: '', avatarUrl: '' });
               }}
             >
               Cancel

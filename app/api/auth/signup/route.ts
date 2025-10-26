@@ -25,9 +25,10 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({ ok: true });
-  } catch (e: any) {
+  } catch (e: unknown) {
     console.error('Signup error:', e);
-    return new NextResponse(e?.message ?? 'Unknown error', { status: 500 });
+    const errorMessage = e instanceof Error ? e.message : 'Unknown error';
+    return new NextResponse(errorMessage, { status: 500 });
   }
 }
 

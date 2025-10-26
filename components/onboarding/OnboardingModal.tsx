@@ -52,8 +52,9 @@ export default function OnboardingModal({ openByDefault }: { openByDefault: bool
         }
         await createBrand(formData);
         setStep('success');
-      } catch (err: any) {
-        setError(err.message || 'Failed to create brand');
+      } catch (err: unknown) {
+        const errorMessage = err instanceof Error ? err.message : 'Failed to create brand';
+        setError(errorMessage);
       }
     });
   };
@@ -73,7 +74,7 @@ export default function OnboardingModal({ openByDefault }: { openByDefault: bool
   const getStepTitle = () => {
     if (step === 'welcome') return 'Welcome to Kittie 👋';
     if (step === 'brand') return 'Create your brand space';
-    if (step === 'success') return 'You\'re all set!';
+    if (step === 'success') return 'You&apos;re all set!';
     return 'Welcome';
   };
 
@@ -135,7 +136,7 @@ export default function OnboardingModal({ openByDefault }: { openByDefault: bool
                 <span className="text-white font-bold text-2xl">K</span>
               </div>
               <p className="text-gray-600">
-                Let's set up your brand.
+                Let&apos;s set up your brand.
               </p>
               <Button 
                 onClick={() => setStep('brand')}
@@ -266,7 +267,7 @@ export default function OnboardingModal({ openByDefault }: { openByDefault: bool
                 <Check className="w-8 h-8 text-green-600" />
               </div>
               <p className="text-gray-600">
-                You're all set! Let's make your first brand, media, or product kit.
+                You&apos;re all set! Let&apos;s make your first brand, media, or product kit.
               </p>
               <Button 
                 onClick={handleGoToDashboard}

@@ -62,8 +62,9 @@ function KitCard({ kit }: { kit: Kit }) {
       try {
         await renameKit(kit.id, name.trim());
         setRenaming(false);
-      } catch (err: any) {
-        setError(err.message || 'Failed to rename kit');
+      } catch (err: unknown) {
+        const errorMessage = err instanceof Error ? err.message : 'Failed to rename kit';
+        setError(errorMessage);
         // Revert optimistic update on error
         setOptimisticKit(kit);
       }
@@ -77,7 +78,7 @@ function KitCard({ kit }: { kit: Kit }) {
     start(async () => {
       try {
         await archiveKit(kit.id);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error('Failed to archive kit:', err);
         // Revert optimistic update on error
         setOptimisticKit(kit);
@@ -92,7 +93,7 @@ function KitCard({ kit }: { kit: Kit }) {
     start(async () => {
       try {
         await restoreKit(kit.id);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error('Failed to restore kit:', err);
         // Revert optimistic update on error
         setOptimisticKit(kit);
@@ -112,7 +113,7 @@ function KitCard({ kit }: { kit: Kit }) {
     start(async () => {
       try {
         await deleteKit(kit.id);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error('Failed to delete kit:', err);
         // Revert optimistic update on error
         setOptimisticKit(kit);

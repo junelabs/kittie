@@ -121,7 +121,7 @@ export async function updateBrand(id: string, formData: FormData) {
     logo_url = data.publicUrl;
   }
 
-  const updateData: any = {};
+  const updateData: Record<string, unknown> = {};
   if (validated.data.name) updateData.name = validated.data.name;
   if (validated.data.description !== undefined) updateData.description = validated.data.description;
   if (validated.data.primary_color) updateData.primary_color = validated.data.primary_color;

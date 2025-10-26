@@ -54,7 +54,7 @@ export function validateFileUpload(
 ): FileValidationResult {
   // Check file type
   const allowedTypes = ALLOWED_FILE_TYPES[category];
-  if (!allowedTypes.includes(file.type)) {
+  if (!allowedTypes.includes(file.type as never)) {
     return {
       isValid: false,
       error: `Invalid file type. Allowed types: ${allowedTypes.join(', ')}`

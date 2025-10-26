@@ -23,7 +23,7 @@ export default function VerifyEmailBanner({
         <div className="flex-1">
           <div className="font-medium">Email not verified</div>
           <div className="opacity-90">
-            We've sent you an email to verify your address. Please follow the instructions to continue. Your account will be restricted until you verify your email.
+            We&apos;ve sent you an email to verify your address. Please follow the instructions to continue. Your account will be restricted until you verify your email.
             {' '}
             <button onClick={handleResend} className="underline underline-offset-2 hover:opacity-80">
               Resend email

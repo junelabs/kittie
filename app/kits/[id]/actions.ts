@@ -150,7 +150,7 @@ export async function updateKitHero({
   invariant(id, 'Kit ID required');
 
   const supabase = await createClient();
-  const updates: any = { updated_at: new Date().toISOString() };
+  const updates: Record<string, unknown> = { updated_at: new Date().toISOString() };
 
   if (name !== undefined) updates.name = name.trim();
   if (description !== undefined) updates.description = description.trim();
@@ -267,7 +267,7 @@ export async function updateSectionMeta({
   description?: string;
 }) {
   const supabase = await createClient();
-  const updates: any = {};
+  const updates: Record<string, unknown> = {};
 
   if (title !== undefined) updates.title = title.trim();
   if (description !== undefined) updates.description = description.trim();
@@ -352,7 +352,7 @@ export async function recordUploadedAssets(
     .order('position', { ascending: false })
     .limit(1);
 
-  let start = last?.[0]?.position ?? -1;
+  const start = last?.[0]?.position ?? -1;
 
   const rows = files.map((f, i) => ({
     section_id: sectionId,
@@ -387,7 +387,7 @@ export async function updateAsset({
     throw new Error('Not authenticated');
   }
 
-  const updates: any = {};
+  const updates: Record<string, unknown> = {};
   if (alt !== undefined) updates.alt = alt.trim() || null;
 
   const { error } = await supabase
@@ -591,7 +591,7 @@ export async function updateTeamMember({
   avatarUrl?: string;
 }) {
   const supabase = await createClient();
-  const updates: any = {};
+  const updates: Record<string, unknown> = {};
 
   if (name !== undefined) updates.name = name.trim();
   if (title !== undefined) updates.title = title.trim() || null;

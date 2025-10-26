@@ -16,8 +16,9 @@ export default function AgencyStep({ onComplete }: { onComplete: () => void }) {
         await markOnboarded();
         onComplete();
         // console.log('onboarding_completed');
-      } catch (e: any) {
-        setErr(e?.message ?? 'Failed to complete onboarding');
+      } catch (e: unknown) {
+        const errorMessage = e instanceof Error ? e.message : 'Failed to complete onboarding';
+        setErr(errorMessage);
       }
     });
   }
@@ -40,7 +41,7 @@ export default function AgencyStep({ onComplete }: { onComplete: () => void }) {
         <div className="flex items-start space-x-3">
           <Clock className="w-5 h-5 text-purple-600 mt-0.5" />
           <div className="space-y-1">
-            <div className="font-medium text-purple-900">What's coming for agencies:</div>
+            <div className="font-medium text-purple-900">What&apos;s coming for agencies:</div>
             <ul className="text-sm text-purple-700 space-y-1">
               <li>• Unlimited client kits</li>
               <li>• Team collaboration tools</li>
