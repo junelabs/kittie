@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabaseServerMutating } from "../../../lib/supabase-server";
+import { createClient } from "@/lib/supabase/server";
 import { nanoid } from "nanoid";
 // import { MediaKit } from "../../../types";
 
 export async function GET() {
   try {
-    const supabase = await supabaseServerMutating();
+    const supabase = await createClient();
     const { data: { user }, error: authError } = await supabase.auth.getUser();
     
     if (authError || !user) {
@@ -32,7 +32,7 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const supabase = await supabaseServerMutating();
+    const supabase = await createClient();
     const { data: { user }, error: authError } = await supabase.auth.getUser();
     
     if (authError || !user) {

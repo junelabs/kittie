@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { supabaseServerMutating } from '@/lib/supabase-server';
+import { createClient } from '@/lib/supabase/server';
 
 export async function POST(request: Request) {
   try {
@@ -9,7 +9,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: 'Email is required' }, { status: 400 });
     }
 
-    const supabase = await supabaseServerMutating();
+    const supabase = await createClient();
 
     const { error } = await supabase
       .from('waitlist')

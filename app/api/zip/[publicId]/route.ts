@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabaseServer } from "../../../../lib/supabase-server";
+import { createClient } from "@/lib/supabase/server";
 import archiver from "archiver";
 
 export async function GET(
@@ -7,7 +7,7 @@ export async function GET(
   { params }: { params: Promise<{ publicId: string }> }
 ) {
   try {
-    const supabase = await supabaseServer();
+    const supabase = await createClient();
     
     const { publicId } = await params;
     

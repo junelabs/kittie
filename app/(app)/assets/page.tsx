@@ -1,13 +1,12 @@
-import { requireAuth } from "@/lib/auth-server";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, Filter } from "lucide-react";
+import Link from "next/link";
 
 export default async function AssetsPage() {
-  // Server-side authentication check - cannot be bypassed
-  await requireAuth();
+  // Authentication is handled by middleware
 
   // Calculate stats for sidebar
   const totalKits = 0; // We could fetch this if needed
@@ -61,10 +60,10 @@ export default async function AssetsPage() {
                     Upload assets to your media kits to see them here. This global view will help you manage all your brand assets in one place.
                   </p>
                   <Button 
-                    onClick={() => window.location.href = '/dashboard'}
+                    asChild
                     className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white"
                   >
-                    Go to Media Kits
+                    <Link href="/dashboard">Go to Media Kits</Link>
                   </Button>
                 </div>
               </CardContent>

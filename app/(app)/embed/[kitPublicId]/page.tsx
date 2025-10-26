@@ -1,10 +1,10 @@
-import { supabaseServer } from "../../../../lib/supabase-server";
+import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import { EditorPreview } from "@/components/kit/EditorPreview";
 import { MediaKit, Section, Asset, TeamMember } from "../../../../types";
 
 export default async function EmbedPage({ params }: { params: Promise<{ kitPublicId: string }> }) {
-  const supabase = await supabaseServer();
+  const supabase = await createClient();
   const { kitPublicId } = await params;
 
   // Fetch the public kit

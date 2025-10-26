@@ -1,4 +1,3 @@
-import { requireAuth } from "@/lib/auth-server";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -6,8 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Key } from "lucide-react";
 
 export default async function ApiKeysPage() {
-  // Server-side authentication check - cannot be bypassed
-  await requireAuth();
+  // Authentication is handled by middleware
 
   // Calculate stats for sidebar
   const totalKits = 0; // We could fetch this if needed
