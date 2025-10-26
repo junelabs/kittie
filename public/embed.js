@@ -77,7 +77,7 @@
     closeButton.onclick = () => hideModal(modal);
 
     const iframe = document.createElement('iframe');
-    iframe.src = `${KITTIE_ORIGIN}/embed/${kitId}`;
+    iframe.src = `${KITTIE_ORIGIN}/embed-kit/${kitId}`;
     iframe.style.cssText = `
       width: 100%;
       height: 80vh;

@@ -116,9 +116,10 @@ async function getKitById(kitId: string): Promise<KitData | null> {
 export default async function EmbedKitPage({ 
   params 
 }: { 
-  params: { kitId: string } 
+  params: Promise<{ kitId: string }> 
 }) {
-  const kit = await getKitById(params.kitId);
+  const { kitId } = await params;
+  const kit = await getKitById(kitId);
   
   if (!kit) {
     notFound();
