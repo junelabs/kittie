@@ -9,9 +9,35 @@ import { Badge } from "@/components/ui/badge";
 import { Check, ChevronDown, X } from "lucide-react";
 import { Navbar } from "../../../components/layout/Navbar";
 
+// Declare global type for KittieEmbed
+declare global {
+  interface Window {
+    KittieEmbed?: {
+      open: (kitId: string) => void;
+    };
+  }
+}
+
 export default function PricingClient() {
   const [isComparisonOpen, setIsComparisonOpen] = React.useState(false);
   const [openFaq, setOpenFaq] = React.useState<number | null>(null);
+
+  // Load KittieEmbed script
+  React.useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://kittie.so/embed.js';
+    script.setAttribute('data-kit', '3c7d092b-d547-44e5-8105-43dad29895cf');
+    script.setAttribute('data-mode', 'modal');
+    script.async = true;
+    document.head.appendChild(script);
+
+    return () => {
+      const existingScript = document.querySelector('script[src="https://kittie.so/embed.js"]');
+      if (existingScript) {
+        document.head.removeChild(existingScript);
+      }
+    };
+  }, []);
 
   // Pricing tiers configuration - easily toggle active tiers
   const pricingTiers = {
@@ -260,6 +286,24 @@ export default function PricingClient() {
               <strong>Join the Waitlist:</strong> We&apos;re currently in beta. Get started free to be first in line when we open for general availability. You&apos;ll receive an email invitation with early access to all features. No commitment required.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Brand Kit Demo */}
+      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div className="max-w-4xl mx-auto text-center">
+          <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            See Kittie in Action
+          </h3>
+          <p className="text-gray-600 mb-6">
+            Check out our own press kit to see how Kittie works.
+          </p>
+          <button 
+            onClick={() => window.KittieEmbed?.open('3c7d092b-d547-44e5-8105-43dad29895cf')}
+            className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md"
+          >
+            View Our Press Kit
+          </button>
         </div>
       </section>
 
