@@ -6,26 +6,42 @@ export default function TestEmbedPage() {
   const [publicKits, setPublicKits] = useState<Array<{id: string; name: string; slug: string}>>([]);
   const [selectedKitId, setSelectedKitId] = useState<string>('');
   const [debugInfo, setDebugInfo] = useState<Record<string, unknown> | null>(null);
+  const [isScriptLoaded, setIsScriptLoaded] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     // Load KittieEmbed script
     const script = document.createElement('script');
-    script.src = 'https://kittie.so/embed.js';
+    script.src = '/embed.js'; // Use local embed script
     script.async = true;
+    script.onload = () => {
+      console.log('KittieEmbed script loaded successfully');
+      console.log('window.KittieEmbed:', window.KittieEmbed);
+      setIsScriptLoaded(true);
+    };
+    script.onerror = (error) => {
+      console.error('Failed to load KittieEmbed script:', error);
+    };
     document.head.appendChild(script);
 
     // Fetch public kits
     fetch('/api/public-kits')
       .then(res => res.json())
       .then(data => {
+        console.log('Public kits data:', data);
         setPublicKits(data.kits || []);
         if (data.kits && data.kits.length > 0) {
           setSelectedKitId(data.kits[0].id);
         }
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.error('Failed to fetch public kits:', error);
+        setIsLoading(false);
       });
 
     return () => {
-      const existingScript = document.querySelector('script[src="https://kittie.so/embed.js"]');
+      const existingScript = document.querySelector('script[src="/embed.js"]');
       if (existingScript) {
         document.head.removeChild(existingScript);
       }
@@ -33,10 +49,26 @@ export default function TestEmbedPage() {
   }, []);
 
   const testEmbed = () => {
-    if (selectedKitId && window.KittieEmbed) {
+    console.log('testEmbed called');
+    console.log('selectedKitId:', selectedKitId);
+    console.log('window.KittieEmbed:', window.KittieEmbed);
+    
+    if (!selectedKitId) {
+      alert('Please select a kit first');
+      return;
+    }
+    
+    if (!window.KittieEmbed) {
+      alert('KittieEmbed not loaded yet. Please wait a moment and try again.');
+      return;
+    }
+    
+    try {
       window.KittieEmbed.open(selectedKitId);
-    } else {
-      alert('No kit selected or KittieEmbed not loaded');
+      console.log('KittieEmbed.open called successfully');
+    } catch (error) {
+      console.error('Error calling KittieEmbed.open:', error);
+      alert('Error opening embed: ' + (error instanceof Error ? error.message : 'Unknown error'));
     }
   };
 
@@ -55,6 +87,17 @@ export default function TestEmbedPage() {
   return (
     <div className="p-8 max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold mb-6">Embed Debug Page</h1>
+      
+      {/* Status indicators */}
+      <div className="mb-6 p-4 bg-gray-100 rounded-lg">
+        <h2 className="text-lg font-semibold mb-2">Status</h2>
+        <div className="space-y-1 text-sm">
+          <div>Script Loaded: {isScriptLoaded ? '✅ Yes' : '❌ No'}</div>
+          <div>Data Loaded: {isLoading ? '⏳ Loading...' : '✅ Yes'}</div>
+          <div>Public Kits: {publicKits.length}</div>
+          <div>Selected Kit: {selectedKitId || 'None'}</div>
+        </div>
+      </div>
       
       <div className="space-y-6">
         <div>
@@ -91,14 +134,27 @@ export default function TestEmbedPage() {
             <div className="flex gap-4">
               <button 
                 onClick={testEmbed}
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                disabled={isLoading || !isScriptLoaded || !selectedKitId}
+                className={`px-4 py-2 rounded ${
+                  isLoading || !isScriptLoaded || !selectedKitId
+                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    : 'bg-blue-500 text-white hover:bg-blue-600'
+                }`}
               >
-                Test Embed Modal
+                {isLoading ? 'Loading...' : 
+                 !isScriptLoaded ? 'Script Loading...' :
+                 !selectedKitId ? 'Select Kit First' :
+                 'Test Embed Modal'}
               </button>
               
               <button 
                 onClick={debugKit}
-                className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+                disabled={!selectedKitId}
+                className={`px-4 py-2 rounded ${
+                  !selectedKitId
+                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    : 'bg-gray-500 text-white hover:bg-gray-600'
+                }`}
               >
                 Debug Kit Data
               </button>
