@@ -54,7 +54,7 @@ export function validateFileUpload(
 ): FileValidationResult {
   // Check file type
   const allowedTypes = ALLOWED_FILE_TYPES[category];
-  if (!allowedTypes.includes(file.type as never)) {
+  if (!includesString(allowedTypes, file.type)) {
     return {
       isValid: false,
       error: `Invalid file type. Allowed types: ${allowedTypes.join(', ')}`
@@ -101,15 +101,30 @@ export function sanitizeFileName(fileName: string): string {
     .toLowerCase();
 }
 
+// derive literal unions from the const arrays
+type ImageMime = typeof ALLOWED_FILE_TYPES.images[number];
+type DocumentMime = typeof ALLOWED_FILE_TYPES.documents[number];
+
+// narrow a string to ImageMime if included in the images list
+function isImageMime(m: string): m is ImageMime {
+  return (ALLOWED_FILE_TYPES.images as readonly string[]).includes(m);
+}
+
+// narrow a string to DocumentMime if included in the documents list
+function isDocumentMime(m: string): m is DocumentMime {
+  return (ALLOWED_FILE_TYPES.documents as readonly string[]).includes(m);
+}
+
+// utility to check if a string is included in a readonly string array
+const includesString = (arr: readonly string[], v: string) => arr.includes(v);
+
 /**
  * Get file category based on MIME type
  */
-export function getFileCategory(mimeType: string): 'images' | 'documents' | 'unknown' {
-  if (ALLOWED_FILE_TYPES.images.includes(mimeType)) {
-    return 'images';
-  }
-  if (ALLOWED_FILE_TYPES.documents.includes(mimeType)) {
-    return 'documents';
-  }
+export function getFileCategory(
+  mimeType: string
+): 'images' | 'documents' | 'unknown' {
+  if (isImageMime(mimeType)) return 'images';
+  if (isDocumentMime(mimeType)) return 'documents';
   return 'unknown';
 }
