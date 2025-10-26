@@ -1,3 +1,4 @@
+import Link from "next/link";
 'use client';
 
 import * as React from 'react';
@@ -132,7 +133,7 @@ export default function SaveConfirmModal({
               className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors"
             >
               Open in new tab <ExternalLink className="h-3 w-3" />
-            </a>
+            </Link>
           </div>
 
           {/* Embed Code Section */}
@@ -236,9 +237,9 @@ export default function SaveConfirmModal({
                 className="w-full rounded-xl bg-orange-100 hover:bg-orange-200 text-orange-700 font-medium border border-orange-200 hover:border-orange-300 transition-colors"
                 asChild
               >
-                <a href="/billing">
+                <Link href="/billing">
                   Upgrade to Starter — $19/mo
-                </a>
+                </Link>
               </Button>
             )}
           </div>
@@ -258,7 +259,7 @@ export default function SaveConfirmModal({
             variant="default"
             className="flex-1 rounded-xl"
           >
-            <a href="/dashboard">Back to dashboard</a>
+            <Link href="/dashboard">Back to dashboard</Link>
           </Button>
         </DialogFooter>
       </DialogContent>

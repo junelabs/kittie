@@ -3,7 +3,8 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { CheckCircle, Upload, Share2, Download, Users, Shield, Zap, ArrowRight, Star, Check } from "lucide-react"
+import { Upload, Share2, Download, Check } from "lucide-react"
+import Link from "next/link"
 import { Navbar } from "@/components/layout/Navbar"
 
 // Landing page component - Root page for Kittie (Vercel Test)
@@ -190,7 +191,7 @@ export default function LandingPage() {
           </div>
           <div className="mt-12">
             <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md" asChild>
-              <a href="/signup">→ Get started free</a>
+              <Link href="/signup">→ Get started free</Link>
             </Button>
           </div>
         </div>
@@ -231,7 +232,7 @@ export default function LandingPage() {
                   </li>
                 </ul>
                 <Button className="w-full bg-white hover:bg-green-500 text-gray-900 border border-gray-200" asChild>
-                  <a href="/signup">Get started free</a>
+                  <Link href="/signup">Get started free</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -318,7 +319,7 @@ export default function LandingPage() {
             Stop updating media kits manually — Kittie keeps them current everywhere.
           </p>
           <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md" asChild>
-            <a href="/signup">Get started free</a>
+            <Link href="/signup">Get started free</Link>
           </Button>
         </div>
       </section>
@@ -339,22 +340,22 @@ export default function LandingPage() {
             <div>
               <h3 className="font-semibold mb-4 text-white">Product</h3>
               <ul className="space-y-2 text-gray-300">
-                <li><a href="/features" className="hover:text-white transition-colors">Features</a></li>
-                <li><a href="/pricing" className="hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="/how-it-works" className="hover:text-white transition-colors">How it works</a></li>
+                <li><Link href="/features" className="hover:text-white transition-colors">Features</Link></li>
+                <li><Link href="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
+                <li><Link href="/how-it-works" className="hover:text-white transition-colors">How it works</Link></li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold mb-4 text-white">Company</h3>
               <ul className="space-y-2 text-gray-300">
-                <li><a href="#" className="hover:text-white transition-colors">Privacy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Privacy</Link></li>
+                <li><a href="#" className="hover:text-white transition-colors">Terms</Link></li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold mb-4 text-white">Social</h3>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">X (Twitter)</a>
+                <a href="#" className="text-gray-300 hover:text-white transition-colors">X (Twitter)</Link>
               </div>
             </div>
           </div>

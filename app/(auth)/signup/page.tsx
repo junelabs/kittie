@@ -5,7 +5,8 @@ import { z } from 'zod';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 const schema = z.object({
   email: z.string().email(),
@@ -146,9 +147,9 @@ export default function SignupPage() {
 
             <p className="text-xs text-gray-500 text-center leading-relaxed">
               By creating an account, you agree to our{' '}
-              <a href="#" className="text-gray-700 hover:text-gray-900 underline">Terms</a>
+              <a href="#" className="text-gray-700 hover:text-gray-900 underline">Terms</Link>
               {' '}and{' '}
-              <a href="#" className="text-gray-700 hover:text-gray-900 underline">Privacy Policy</a>.
+              <a href="#" className="text-gray-700 hover:text-gray-900 underline">Privacy Policy</Link>.
             </p>
           </form>
         </div>
@@ -157,12 +158,12 @@ export default function SignupPage() {
         <div className="text-center mt-6 animate-in fade-in duration-700 delay-500">
           <p className="text-sm text-gray-600">
             Already have an account?{' '}
-            <a 
+            <Link 
               href="/login" 
               className="font-medium text-gray-900 hover:text-black transition-colors duration-200"
             >
               Sign in
-            </a>
+            </Link>
           </p>
         </div>
       </div>

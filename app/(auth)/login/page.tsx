@@ -5,7 +5,8 @@ import { z } from 'zod';
 import { useRouter } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 const schema = z.object({
   email: z.string().email(),
@@ -138,13 +139,13 @@ export default function LoginPage() {
         {/* Sign Up Link */}
         <div className="text-center mt-6 animate-in fade-in duration-700 delay-500">
           <p className="text-sm text-gray-600">
-            Don't have an account?{' '}
-            <a 
+            Don&apos;t have an account?{' '}
+            <Link 
               href="/signup" 
               className="font-medium text-gray-900 hover:text-black transition-colors duration-200"
             >
               Create one
-            </a>
+            </Link>
           </p>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 "use client";
 
 import React, { useState } from "react";
@@ -244,7 +245,7 @@ export default function PricingPage() {
                       }`}
                       asChild
                     >
-                      <a href={plan.price === 0 ? "/waitlist" : "/waitlist"}>{plan.cta}</a>
+                      <a href={plan.price === 0 ? "/waitlist" : "/waitlist"}>{plan.cta}</Link>
                     </Button>
                   </CardContent>
                 </Card>
@@ -375,10 +376,10 @@ export default function PricingPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md" asChild>
-              <a href="/signup">Get started free</a>
+              <Link href="/signup">Get started free</Link>
             </Button>
             <Button size="lg" variant="outline" className="px-8 py-4 text-gray-900 border-gray-300 hover:bg-gray-50" asChild>
-              <a href="/help">Get help</a>
+              <Link href="/help">Get help</Link>
             </Button>
           </div>
         </div>
@@ -400,26 +401,26 @@ export default function PricingPage() {
             <div>
               <h3 className="font-semibold mb-4">Product</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="/features" className="hover:text-white transition-colors">Features</a></li>
-                <li><a href="/pricing" className="hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="/how-it-works" className="hover:text-white transition-colors">How it works</a></li>
+                <li><Link href="/features" className="hover:text-white transition-colors">Features</Link></li>
+                <li><Link href="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
+                <li><Link href="/how-it-works" className="hover:text-white transition-colors">How it works</Link></li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold mb-4">Company</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">About</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Privacy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">About</Link></li>
+                <li><a href="#" className="hover:text-white transition-colors">Contact</Link></li>
+                <li><a href="#" className="hover:text-white transition-colors">Privacy</Link></li>
+                <li><a href="#" className="hover:text-white transition-colors">Terms</Link></li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold mb-4">Social</h3>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">X</a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">GitHub</a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">LinkedIn</a>
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">X</Link>
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">GitHub</Link>
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">LinkedIn</Link>
               </div>
             </div>
           </div>

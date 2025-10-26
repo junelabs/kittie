@@ -47,7 +47,7 @@ export default function EditorShellWithSave({ kitData, userPlan }: Props) {
             className="text-sm text-gray-600 hover:text-gray-900 hover:underline cursor-pointer"
           >
             ← Back to Dashboard
-          </a>
+          </Link>
           <div className="h-4 w-px bg-gray-200" />
           <h1 className="text-sm font-semibold text-gray-700">Kit Editor</h1>
         </div>
