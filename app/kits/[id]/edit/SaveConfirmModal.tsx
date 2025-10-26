@@ -7,8 +7,8 @@ import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
 import { useTransition, useState } from 'react';
-import { publishKit } from '../share-actions';
-import { Copy, Check, ExternalLink, Lock } from 'lucide-react';
+import { publishKit, unpublishKit } from '../share-actions';
+import { Copy, Check, ExternalLink, Lock, Globe } from 'lucide-react';
 
 type Props = {
   kitId: string;
@@ -36,6 +36,7 @@ export default function SaveConfirmModal({
   const [copiedUrl, setCopiedUrl] = useState(false);
   const [copiedEmbed, setCopiedEmbed] = useState(false);
   const [embedMode, setEmbedMode] = useState<'inline' | 'modal' | 'fullpage'>('inline');
+  const [isPublic, setIsPublic] = useState(initialIsPublic);
 
   const isFreeUser = userPlan === 'free';
   const [brandSlug, setBrandSlug] = useState('brand'); // Will be updated when kit is published
@@ -65,18 +66,12 @@ export default function SaveConfirmModal({
 
   const embedCode = getEmbedCode();
 
-  // Auto-publish on mount if not already public
+  // Initialize slug and brand slug when modal opens
   React.useEffect(() => {
-    if (!initialIsPublic && isOpen) {
-      start(async () => {
-        const { slug: s, brandSlug: bs } = await publishKit(kitId, kitName);
-        setSlug(s);
-        setBrandSlug(bs);
-      });
-    } else if (initialSlug) {
+    if (isOpen && initialSlug) {
       setSlug(initialSlug);
     }
-  }, [isOpen, initialIsPublic, kitId, kitName, initialSlug]);
+  }, [isOpen, initialSlug]);
 
   const handleCopyUrl = () => {
     navigator.clipboard.writeText(publicUrl);
@@ -88,6 +83,34 @@ export default function SaveConfirmModal({
     navigator.clipboard.writeText(embedCode);
     setCopiedEmbed(true);
     setTimeout(() => setCopiedEmbed(false), 2000);
+  };
+
+  const handlePublicToggle = async (checked: boolean) => {
+    setIsPublic(checked);
+    
+    if (checked) {
+      // Publish the kit
+      start(async () => {
+        try {
+          const { slug: s, brandSlug: bs } = await publishKit(kitId, kitName);
+          setSlug(s);
+          setBrandSlug(bs);
+        } catch (error) {
+          console.error('Failed to publish kit:', error);
+          setIsPublic(false); // Revert on error
+        }
+      });
+    } else {
+      // Unpublish the kit
+      start(async () => {
+        try {
+          await unpublishKit(kitId);
+        } catch (error) {
+          console.error('Failed to unpublish kit:', error);
+          setIsPublic(true); // Revert on error
+        }
+      });
+    }
   };
 
   return (
@@ -104,103 +127,132 @@ export default function SaveConfirmModal({
         </DialogHeader>
 
         <div className="space-y-6 overflow-hidden">
-          {/* Public URL Section */}
-          <div className="space-y-2.5">
-            <label className="text-sm font-medium text-gray-700">View it at:</label>
-            <div className="flex items-center gap-2">
-              <div className="min-w-0 flex-1 rounded-xl border border-gray-200 bg-gray-50 px-3.5 py-2.5 overflow-hidden">
-                <div className="overflow-x-auto scrollbar-hide">
-                  <code className="text-xs font-mono text-gray-900 whitespace-nowrap">{publicUrl}</code>
+          {/* Public URL Section - Only show when kit is public */}
+          {isPublic && (
+            <div className="space-y-2.5">
+              <label className="text-sm font-medium text-gray-700">View it at:</label>
+              <div className="flex items-center gap-2">
+                <div className="min-w-0 flex-1 rounded-xl border border-gray-200 bg-gray-50 px-3.5 py-2.5 overflow-hidden">
+                  <div className="overflow-x-auto scrollbar-hide">
+                    <code className="text-xs font-mono text-gray-900 whitespace-nowrap">{publicUrl}</code>
+                  </div>
+                </div>
+                <Button 
+                  size="sm" 
+                  variant="outline" 
+                  onClick={handleCopyUrl}
+                  className="shrink-0 rounded-xl h-[38px] w-[38px] p-0"
+                >
+                  {copiedUrl ? (
+                    <Check className="h-4 w-4 text-green-600" />
+                  ) : (
+                    <Copy className="h-4 w-4" />
+                  )}
+                </Button>
+              </div>
+              <a
+                href={publicUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors"
+              >
+                Open in new tab <ExternalLink className="h-3 w-3" />
+              </a>
+            </div>
+          )}
+
+          {/* Embed Code Section - Only show when kit is public */}
+          {isPublic && (
+            <div className="space-y-2.5">
+              <div className="flex items-center justify-between">
+                <label className="text-sm font-medium text-gray-700">Embed code</label>
+                
+                {/* Mode selector */}
+                <div className="flex items-center gap-1 rounded-lg bg-gray-100 p-1">
+                  <button
+                    onClick={() => setEmbedMode('inline')}
+                    className={`rounded-md px-2.5 py-1 text-xs font-medium transition-colors ${
+                      embedMode === 'inline'
+                        ? 'bg-white text-gray-900 shadow-sm'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    Inline
+                  </button>
+                  <button
+                    onClick={() => setEmbedMode('modal')}
+                    className={`rounded-md px-2.5 py-1 text-xs font-medium transition-colors ${
+                      embedMode === 'modal'
+                        ? 'bg-white text-gray-900 shadow-sm'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    Modal
+                  </button>
+                  <button
+                    onClick={() => setEmbedMode('fullpage')}
+                    className={`rounded-md px-2.5 py-1 text-xs font-medium transition-colors ${
+                      embedMode === 'fullpage'
+                        ? 'bg-white text-gray-900 shadow-sm'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    Full Page
+                  </button>
                 </div>
               </div>
-              <Button 
-                size="sm" 
-                variant="outline" 
-                onClick={handleCopyUrl}
-                className="shrink-0 rounded-xl h-[38px] w-[38px] p-0"
-              >
-                {copiedUrl ? (
-                  <Check className="h-4 w-4 text-green-600" />
-                ) : (
-                  <Copy className="h-4 w-4" />
-                )}
-              </Button>
-            </div>
-            <a
-              href={publicUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors"
-            >
-              Open in new tab <ExternalLink className="h-3 w-3" />
-            </a>
-          </div>
 
-          {/* Embed Code Section */}
-          <div className="space-y-2.5">
-            <div className="flex items-center justify-between">
-              <label className="text-sm font-medium text-gray-700">Embed code</label>
-              
-              {/* Mode selector */}
-              <div className="flex items-center gap-1 rounded-lg bg-gray-100 p-1">
-                <button
-                  onClick={() => setEmbedMode('inline')}
-                  className={`rounded-md px-2.5 py-1 text-xs font-medium transition-colors ${
-                    embedMode === 'inline'
-                      ? 'bg-white text-gray-900 shadow-sm'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
+              {/* Description for each mode */}
+              <p className="text-xs text-muted-foreground">
+                {embedMode === 'inline' && 'Embeds directly in your page content'}
+                {embedMode === 'modal' && 'Opens in a popup overlay when triggered'}
+                {embedMode === 'fullpage' && 'Takes over the entire page'}
+              </p>
+
+              <div className="flex items-center gap-2">
+                <div className="min-w-0 flex-1 rounded-xl border border-gray-200 bg-gray-50 overflow-hidden">
+                  <div className="overflow-x-auto scrollbar-hide px-3.5 py-2.5">
+                    <code className="text-xs font-mono text-gray-900 leading-tight whitespace-pre-wrap block">{embedCode}</code>
+                  </div>
+                </div>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="shrink-0 rounded-xl h-[38px] w-[38px] p-0"
+                  onClick={handleCopyEmbed}
                 >
-                  Inline
-                </button>
-                <button
-                  onClick={() => setEmbedMode('modal')}
-                  className={`rounded-md px-2.5 py-1 text-xs font-medium transition-colors ${
-                    embedMode === 'modal'
-                      ? 'bg-white text-gray-900 shadow-sm'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                >
-                  Modal
-                </button>
-                <button
-                  onClick={() => setEmbedMode('fullpage')}
-                  className={`rounded-md px-2.5 py-1 text-xs font-medium transition-colors ${
-                    embedMode === 'fullpage'
-                      ? 'bg-white text-gray-900 shadow-sm'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                >
-                  Full Page
-                </button>
+                  {copiedEmbed ? (
+                    <Check className="h-4 w-4 text-green-600" />
+                  ) : (
+                    <Copy className="h-4 w-4" />
+                  )}
+                </Button>
               </div>
             </div>
+          )}
 
-            {/* Description for each mode */}
-            <p className="text-xs text-muted-foreground">
-              {embedMode === 'inline' && 'Embeds directly in your page content'}
-              {embedMode === 'modal' && 'Opens in a popup overlay when triggered'}
-              {embedMode === 'fullpage' && 'Takes over the entire page'}
-            </p>
+          <Separator className="my-6" />
 
-            <div className="flex items-center gap-2">
-              <div className="min-w-0 flex-1 rounded-xl border border-gray-200 bg-gray-50 overflow-hidden">
-                <div className="overflow-x-auto scrollbar-hide px-3.5 py-2.5">
-                  <code className="text-xs font-mono text-gray-900 leading-tight whitespace-pre-wrap block">{embedCode}</code>
+          {/* Public Section */}
+          <div className="space-y-3">
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-2.5">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100">
+                  <Globe className="h-4 w-4 text-blue-600" />
+                </div>
+                <div className="space-y-0.5">
+                  <p className="text-sm font-medium text-gray-900">Make kit public</p>
+                  <p className="text-xs text-muted-foreground">
+                    Allow others to view and embed this kit
+                  </p>
                 </div>
               </div>
-              <Button
-                size="sm"
-                variant="outline"
-                className="shrink-0 rounded-xl h-[38px] w-[38px] p-0"
-                onClick={handleCopyEmbed}
-              >
-                {copiedEmbed ? (
-                  <Check className="h-4 w-4 text-green-600" />
-                ) : (
-                  <Copy className="h-4 w-4" />
-                )}
-              </Button>
+              <Switch
+                checked={isPublic}
+                onCheckedChange={handlePublicToggle}
+                disabled={pending}
+                className={pending ? 'opacity-40 cursor-not-allowed' : ''}
+              />
             </div>
           </div>
 

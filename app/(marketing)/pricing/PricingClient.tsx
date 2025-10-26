@@ -21,6 +21,43 @@ declare global {
 export default function PricingClient() {
   const [isComparisonOpen, setIsComparisonOpen] = React.useState(false);
   const [openFaq, setOpenFaq] = React.useState<number | null>(null);
+  const [publicKitId, setPublicKitId] = React.useState<string | null>(null);
+
+  // Fetch a public kit ID
+  React.useEffect(() => {
+    const fetchPublicKit = async () => {
+      try {
+        const response = await fetch('/api/public-kits');
+        const data = await response.json();
+        if (data.kits && data.kits.length > 0) {
+          setPublicKitId(data.kits[0].id);
+        }
+      } catch (error) {
+        console.error('Failed to fetch public kit:', error);
+      }
+    };
+
+    fetchPublicKit();
+  }, []);
+
+  // Load KittieEmbed script when we have a kit ID
+  React.useEffect(() => {
+    if (!publicKitId) return;
+
+    const script = document.createElement('script');
+    script.src = 'https://kittie.so/embed.js';
+    script.setAttribute('data-kit', publicKitId);
+    script.setAttribute('data-mode', 'modal');
+    script.async = true;
+    document.head.appendChild(script);
+
+    return () => {
+      const existingScript = document.querySelector('script[src="https://kittie.so/embed.js"]');
+      if (existingScript) {
+        document.head.removeChild(existingScript);
+      }
+    };
+  }, [publicKitId]);
 
 
   // Pricing tiers configuration - easily toggle active tiers
@@ -282,14 +319,13 @@ export default function PricingClient() {
           <p className="text-gray-600 mb-6">
             Check out our own press kit to see how Kittie works.
           </p>
-          <Button 
-            asChild
-            className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md"
+          <button 
+            onClick={() => publicKitId && window.KittieEmbed?.open(publicKitId)}
+            disabled={!publicKitId}
+            className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <Link href="/demo" target="_blank">
-              View Our Press Kit
-            </Link>
-          </Button>
+            {publicKitId ? 'View Our Press Kit' : 'Loading...'}
+          </button>
         </div>
       </section>
 
