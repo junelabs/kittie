@@ -245,7 +245,7 @@ export default function PricingPage() {
                       }`}
                       asChild
                     >
-                      <a href={plan.price === 0 ? "/waitlist" : "/waitlist"}>{plan.cta}</Link>
+                      <Link href={plan.price === 0 ? "/waitlist" : "/waitlist"}>{plan.cta}</Link>
                     </Button>
                   </CardContent>
                 </Card>

@@ -60,7 +60,7 @@ export default function WaitlistSuccessPage() {
             <div>
               <h3 className="font-semibold mb-4">Social</h3>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">X (Twitter)</Link>
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">X (Twitter)</a>
               </div>
             </div>
           </div>

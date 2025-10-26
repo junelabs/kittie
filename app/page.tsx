@@ -348,14 +348,14 @@ export default function LandingPage() {
             <div>
               <h3 className="font-semibold mb-4 text-white">Company</h3>
               <ul className="space-y-2 text-gray-300">
-                <li><a href="#" className="hover:text-white transition-colors">Privacy</Link></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms</Link></li>
+                <li><a href="#" className="hover:text-white transition-colors">Privacy</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Terms</a></li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold mb-4 text-white">Social</h3>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">X (Twitter)</Link>
+                <a href="#" className="text-gray-300 hover:text-white transition-colors">X (Twitter)</a>
               </div>
             </div>
           </div>

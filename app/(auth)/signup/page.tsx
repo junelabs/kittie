@@ -147,9 +147,9 @@ export default function SignupPage() {
 
             <p className="text-xs text-gray-500 text-center leading-relaxed">
               By creating an account, you agree to our{' '}
-              <a href="#" className="text-gray-700 hover:text-gray-900 underline">Terms</Link>
-              {' '}and{' '}
-              <a href="#" className="text-gray-700 hover:text-gray-900 underline">Privacy Policy</Link>.
+                <a href="#" className="text-gray-700 hover:text-gray-900 underline">Terms</a>
+                {' '}and{' '}
+                <a href="#" className="text-gray-700 hover:text-gray-900 underline">Privacy Policy</a>.
             </p>
           </form>
         </div>

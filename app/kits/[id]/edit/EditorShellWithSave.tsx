@@ -42,7 +42,7 @@ export default function EditorShellWithSave({ kitData, userPlan }: Props) {
       {/* Header */}
       <header className="flex h-14 items-center justify-between border-b bg-white px-4">
         <div className="flex items-center gap-3">
-          <a
+          <Link
             href="/dashboard"
             className="text-sm text-gray-600 hover:text-gray-900 hover:underline cursor-pointer"
           >
