@@ -2,7 +2,31 @@
 
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
-import { stripe, STRIPE_CONFIG } from '@/lib/stripe';
+
+type StripeType = typeof import("stripe");
+
+async function getStripe() {
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!key) {
+    throw new Error("STRIPE_SECRET_KEY is not set");
+  }
+  const { default: Stripe }: StripeType = (await import("stripe")) as StripeType;
+  return new Stripe(key, { apiVersion: "2025-02-24.acacia" });
+}
+
+// Move STRIPE_CONFIG here to avoid importing from lib/stripe
+const STRIPE_CONFIG = {
+  starter: {
+    priceId: process.env.STRIPE_STARTER_PRICE_ID || 'price_starter',
+    name: 'Starter',
+    amount: 1900, // $19.00
+  },
+  pro: {
+    priceId: process.env.STRIPE_PRO_PRICE_ID || 'price_pro',
+    name: 'Pro', 
+    amount: 7900, // $79.00
+  },
+} as const;
 
 export async function createBillingPortalSession() {
   try {
@@ -24,6 +48,7 @@ export async function createBillingPortalSession() {
       return { error: 'No billing account found. Please upgrade to a paid plan first.' };
     }
 
+    const stripe = await getStripe();
     const session = await stripe.billingPortal.sessions.create({
       customer: profile.stripe_customer_id,
       return_url: `${process.env.NEXT_PUBLIC_SITE_URL}/billing`,
@@ -52,6 +77,7 @@ export async function createCheckoutSession(planType: 'starter' | 'pro' = 'start
       .eq('id', user.id)
       .single();
 
+    const stripe = await getStripe();
     let customerId = profile?.stripe_customer_id;
 
     if (!customerId) {

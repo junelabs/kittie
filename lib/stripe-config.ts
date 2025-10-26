@@ -1,12 +1,5 @@
-import Stripe from 'stripe';
-
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error('STRIPE_SECRET_KEY is not set');
-}
-
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2025-02-24.acacia',
-});
+// Stripe configuration constants only
+// No top-level Stripe initialization to avoid build-time errors
 
 export const STRIPE_CONFIG = {
   starter: {

@@ -1,10 +1,19 @@
 import { NextResponse } from 'next/server';
-import { stripe } from '@/lib/stripe';
 import { createClient } from '@/lib/supabase/server';
 import { withRateLimit } from '@/lib/rate-limit';
-import Stripe from 'stripe';
 
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+export const dynamic = "force-dynamic"; // do not pre-render/evaluate at build
+
+type StripeType = typeof import("stripe");
+
+async function getStripe() {
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!key) {
+    throw new Error("STRIPE_SECRET_KEY is not set");
+  }
+  const { default: Stripe }: StripeType = (await import("stripe")) as StripeType;
+  return new Stripe(key, { apiVersion: "2025-02-24.acacia" });
+}
 
 // Rate limit webhook requests (Stripe sends many events)
 const rateLimitedHandler = withRateLimit({
@@ -17,8 +26,17 @@ export const POST = rateLimitedHandler(async function webhookHandler(req: Reques
   try {
     const body = await req.text();
     const signature = req.headers.get('stripe-signature')!;
+    const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 
-    let event: Stripe.Event;
+    if (!webhookSecret) {
+      throw new Error("STRIPE_WEBHOOK_SECRET is not set");
+    }
+
+    // Get Stripe instance at request time
+    const stripe = await getStripe();
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let event: { type: string; data: { object: any } };
 
     try {
       event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
@@ -31,7 +49,7 @@ export const POST = rateLimitedHandler(async function webhookHandler(req: Reques
 
     switch (event.type) {
       case 'checkout.session.completed': {
-        const session = event.data.object as Stripe.Checkout.Session;
+        const session = event.data.object;
         const userId = session.metadata?.user_id;
         const planType = session.metadata?.plan_type;
 
@@ -60,7 +78,7 @@ export const POST = rateLimitedHandler(async function webhookHandler(req: Reques
       }
 
       case 'customer.subscription.updated': {
-        const subscription = event.data.object as Stripe.Subscription;
+        const subscription = event.data.object;
         const customerId = subscription.customer as string;
 
         // Get user by customer ID
@@ -93,7 +111,7 @@ export const POST = rateLimitedHandler(async function webhookHandler(req: Reques
       }
 
       case 'customer.subscription.deleted': {
-        const subscription = event.data.object as Stripe.Subscription;
+        const subscription = event.data.object;
         const customerId = subscription.customer as string;
 
         // Get user by customer ID
