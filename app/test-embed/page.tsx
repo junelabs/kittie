@@ -94,6 +94,57 @@ export default function TestEmbedPage() {
     }
   };
 
+  const debugClientSide = async () => {
+    try {
+      // Use client-side Supabase to check authentication and data
+      const { sbBrowser } = await import('@/lib/supabase/browser');
+      const supabase = sbBrowser();
+      
+      // Check auth
+      const { data: { user }, error: authError } = await supabase.auth.getUser();
+      
+      // Check kits table
+      const { data: kits, error: kitsError } = await supabase
+        .from('kits')
+        .select('id, name, is_public, slug, brand_slug, status, created_at, updated_at, owner_id')
+        .order('updated_at', { ascending: false })
+        .limit(10);
+      
+      // Check media_kits table
+      const { data: mediaKits, error: mediaKitsError } = await supabase
+        .from('media_kits')
+        .select('id, name, is_public, public_id, created_at, updated_at, owner_id')
+        .order('updated_at', { ascending: false })
+        .limit(10);
+
+      setDebugInfo({
+        auth: {
+          user: user ? { id: user.id, email: user.email } : null,
+          error: authError?.message
+        },
+        kits: {
+          data: kits,
+          error: kitsError?.message
+        },
+        mediaKits: {
+          data: mediaKits,
+          error: mediaKitsError?.message
+        },
+        publicKitsCount: kits?.filter(k => k.is_public).length || 0,
+        publicMediaKitsCount: mediaKits?.filter(k => k.is_public).length || 0,
+        totalKitsCount: kits?.length || 0,
+        totalMediaKitsCount: mediaKits?.length || 0,
+        source: 'client-side'
+      });
+    } catch (error) {
+      console.error('Client-side debug failed:', error);
+      setDebugInfo({
+        error: 'Client-side debug failed',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  };
+
   return (
     <div className="p-8 max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold mb-6">Embed Debug Page</h1>
@@ -173,7 +224,14 @@ export default function TestEmbedPage() {
                 onClick={debugDatabase}
                 className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
               >
-                Debug Database
+                Debug Database (Server)
+              </button>
+              
+              <button 
+                onClick={debugClientSide}
+                className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600"
+              >
+                Debug Database (Client)
               </button>
             </div>
           </div>
