@@ -22,22 +22,6 @@ export default function PricingClient() {
   const [isComparisonOpen, setIsComparisonOpen] = React.useState(false);
   const [openFaq, setOpenFaq] = React.useState<number | null>(null);
 
-  // Load KittieEmbed script
-  React.useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://kittie.so/embed.js';
-    script.setAttribute('data-kit', '3c7d092b-d547-44e5-8105-43dad29895cf');
-    script.setAttribute('data-mode', 'modal');
-    script.async = true;
-    document.head.appendChild(script);
-
-    return () => {
-      const existingScript = document.querySelector('script[src="https://kittie.so/embed.js"]');
-      if (existingScript) {
-        document.head.removeChild(existingScript);
-      }
-    };
-  }, []);
 
   // Pricing tiers configuration - easily toggle active tiers
   const pricingTiers = {
@@ -298,12 +282,14 @@ export default function PricingClient() {
           <p className="text-gray-600 mb-6">
             Check out our own press kit to see how Kittie works.
           </p>
-          <button 
-            onClick={() => window.KittieEmbed?.open('3c7d092b-d547-44e5-8105-43dad29895cf')}
+          <Button 
+            asChild
             className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md"
           >
-            View Our Press Kit
-          </button>
+            <Link href="/demo" target="_blank">
+              View Our Press Kit
+            </Link>
+          </Button>
         </div>
       </section>
 
